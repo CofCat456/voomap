@@ -3,12 +3,13 @@
     "module": "ESNext",
     "baseUrl": ".",
     "target": "es2020",
-    "lib": ["DOM", "ESNext"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "resolveJsonModule": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
@@ -17,9 +18,11 @@
   "include": [
     "./*.ts",
     "./docs/.vitepress/**/*.ts",
-    "./docs/.vitepress/**/*.vue",
-    "./packages/**/*.ts",
-    "./packages/**/*.vue"
+    "./docs/.vitepress/**/*.vue"
   ],
-  "exclude": ["**/dist/**", "node_modules"]
+  "exclude": [
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/playground/**"
+  ]
 }
