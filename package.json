@@ -3,9 +3,27 @@
   "private": true,
   "version": "0.0.0",
   "description": "Google Map with Vue3",
+  "author": "CofCat <a25690756@gmail.com> (https://github.com/CofCat456)",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "lint": "eslint './packages/**/*.{ts,vue}'",
+    "lint:fix": "pnpm lint --fix"
+  },
+  "lint-staged": {
+    "{packages}/**/*.{ts,vue}": [
+      "pnpm lint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.39.8",
+    "eslint": "^8.46.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.3",
     "typescript": "^5.0.2",
     "vue": "^3.3.4"
   }
