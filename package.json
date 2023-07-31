@@ -1,0 +1,12 @@
+{
+  "name": "vue3-google-map",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Google Map with Vue3",
+  "type": "module",
+  "scripts": {},
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "vue": "^3.3.4"
+  }
+}
