@@ -7,7 +7,10 @@
   "type": "module",
   "scripts": {
     "lint": "eslint './packages/**/*.{ts,vue}'",
-    "lint:fix": "pnpm lint --fix"
+    "lint:fix": "pnpm lint --fix",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "lint-staged": {
     "{packages}/**/*.{ts,vue}": [
@@ -25,6 +28,7 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.2.3",
     "typescript": "^5.0.2",
+    "vitepress": "1.0.0-beta.7",
     "vue": "^3.3.4"
   }
 }
