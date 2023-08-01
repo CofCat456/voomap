@@ -1,5 +1,5 @@
 {
-  "name": "@vue3-google-map/core",
+  "name": "@cofcat/vue3-google-map",
   "version": "1.0.0",
   "description": "",
   "source": "src/index.ts",
@@ -21,8 +21,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "peerDependencies": {
+    "vue": "^3.3.4"
+  },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.2",
-    "@vue3-google-map/types": "workspace:^"
+    "@vue3-google-map/core": "workspace:*",
+    "@vue3-google-map/types": "workspace:*"
   }
 }

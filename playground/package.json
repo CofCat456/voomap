@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vue3-google-map/core": "workspace:*",
+    "@cofcat/vue3-google-map": "workspace:*",
     "vue": "^3.3.4"
   },
   "devDependencies": {

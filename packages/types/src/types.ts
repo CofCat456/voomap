@@ -1,6 +1,10 @@
+// Map Config
+export interface MapConfig extends MapOptions {
+  apiKey: string
+}
+
 // Map Options
 export interface MapOptions {
-  apiKey: string
   center?: MapCenter
   zoom?: number
 }

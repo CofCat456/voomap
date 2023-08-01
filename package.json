@@ -8,6 +8,7 @@
   "scripts": {
     "build:core": "pnpm --filter @vue3-google-map/core build",
     "build:types": "pnpm --filter @vue3-google-map/types build",
+    "build:map": "pnpm --filter @cofcat/vue3-google-map build",
     "lint": "eslint './packages/**/*.{ts,vue}'",
     "lint:fix": "pnpm lint --fix",
     "docs:dev": "vitepress dev docs",
@@ -42,6 +43,7 @@
     "rollup": "^3.27.0",
     "rollup-plugin-dts": "^5.3.1",
     "rollup-plugin-esbuild": "^5.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-vue": "^6.0.0",
     "typescript": "^5.1.6",
     "vitepress": "1.0.0-beta.7",

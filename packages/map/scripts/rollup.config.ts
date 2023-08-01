@@ -3,6 +3,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { readJSONSync } from 'fs-extra';
 import esbuild from 'rollup-plugin-esbuild';
+import vue from 'rollup-plugin-vue';
+import dts from 'rollup-plugin-dts';
+import postcss from 'rollup-plugin-postcss';
 
 import type { OutputOptions, RollupOptions } from 'rollup';
 
@@ -35,8 +38,19 @@ for (const format of formats) {
       esbuild(),
       resolve(),
       commonjs(),
+      vue(),
+      postcss(),
     ],
   });
 }
+
+configs.push({
+  input: 'src/types/index.d.ts',
+  output: {
+    file: 'dist/index.d.ts',
+    format: 'es',
+  },
+  plugins: [dts()],
+});
 
 export default configs;
