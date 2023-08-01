@@ -1,4 +1,4 @@
-import GoogleMap from './GoogleMap.vue';
+import GoogleMap from './GoogleMap';
 
 export {
   GoogleMap,

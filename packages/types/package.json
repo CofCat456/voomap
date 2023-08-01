@@ -1,8 +1,8 @@
 {
-  "name": "@vue3-google-map/core",
+  "name": "@vue3-google-map/types",
   "version": "1.0.0",
   "description": "",
-  "source": "src/index.ts",
+  "source": "index.d.ts",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.mjs",
   "types": "dist/index.d.ts",
@@ -20,12 +20,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "peerDependencies": {
-    "vue": "^3.3.4"
-  },
-  "dependencies": {
-    "@googlemaps/js-api-loader": "^1.16.2",
-    "@vue3-google-map/types": "workspace:^"
-  }
+  "license": "ISC"
 }

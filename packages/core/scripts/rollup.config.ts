@@ -1,17 +1,16 @@
 import path from 'node:path';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import esbuild from 'rollup-plugin-esbuild';
 import { readJSONSync } from 'fs-extra';
+import esbuild from 'rollup-plugin-esbuild';
 import vue from 'rollup-plugin-vue';
+import dts from 'rollup-plugin-dts';
 
 import type { OutputOptions, RollupOptions } from 'rollup';
 
 const { source } = readJSONSync(
   path.resolve(__dirname, '../package.json'),
   'utf-8');
-
-console.log(source);
 
 const configs: RollupOptions[] = [];
 const formats = ['esm', 'cjs', 'umd'] as const;
@@ -42,5 +41,14 @@ for (const format of formats) {
     ],
   });
 }
+
+configs.push({
+  input: 'src/types/index.d.ts',
+  output: {
+    file: `dist/index.d.ts`,
+    format: 'es',
+  },
+  plugins: [dts()],
+});
 
 export default configs;

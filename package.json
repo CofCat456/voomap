@@ -6,7 +6,8 @@
   "author": "CofCat <a25690756@gmail.com> (https://github.com/CofCat456)",
   "type": "module",
   "scripts": {
-    "build": "pnpm --filter @vue3-google-map/core build",
+    "build:core": "pnpm --filter @vue3-google-map/core build",
+    "build:types": "pnpm --filter @vue3-google-map/types build",
     "lint": "eslint './packages/**/*.{ts,vue}'",
     "lint:fix": "pnpm lint --fix",
     "docs:dev": "vitepress dev docs",
@@ -35,13 +36,14 @@
     "eslint": "^8.46.0",
     "esno": "^0.17.0",
     "fs-extra": "^11.1.1",
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "rimraf": "^5.0.1",
     "rollup": "^3.27.0",
+    "rollup-plugin-dts": "^5.3.1",
     "rollup-plugin-esbuild": "^5.0.0",
     "rollup-plugin-vue": "^6.0.0",
-    "typescript": "^5.0.2",
+    "typescript": "^5.1.6",
     "vitepress": "1.0.0-beta.7",
     "vue": "^3.3.4"
   }

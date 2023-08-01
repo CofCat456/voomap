@@ -18,11 +18,10 @@
   "include": [
     "./*.ts",
     "./docs/.vitepress/**/*.ts",
-    "./docs/.vitepress/**/*.vue"
+    "./docs/.vitepress/**/*.vue",
+    "./packages/**/*.d.ts",
+    "./packages/**/*.ts",
+    "./packages/**/*.vue"
   ],
-  "exclude": [
-    "**/dist/**",
-    "**/node_modules/**",
-    "**/playground/**"
-  ]
+  "exclude": ["**/dist/**", "node_modules"]
 }

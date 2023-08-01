@@ -3,5 +3,5 @@ import { GoogleMap } from '@vue3-google-map/core';
 </script>
 
 <template>
-  <GoogleMap title="Google Map" />
+  <GoogleMap api-key="Google Map" />
 </template>
