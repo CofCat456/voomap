@@ -16,6 +16,7 @@
   "scripts": {
     "build": "esno scripts/build.ts",
     "build:rollup": "rollup -c",
+    "dev": "pnpm build:rollup -w",
     "clean": "rimraf dist"
   },
   "keywords": [],
