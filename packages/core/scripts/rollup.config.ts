@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { readJSONSync } from 'fs-extra';
 import esbuild from 'rollup-plugin-esbuild';
+import dts from 'rollup-plugin-dts';
 
 import type { OutputOptions, RollupOptions } from 'rollup';
 
@@ -38,5 +39,14 @@ for (const format of formats) {
     ],
   });
 }
+
+configs.push({
+  input: source,
+  output: {
+    file: 'dist/index.d.ts',
+    format: 'es',
+  },
+  plugins: [dts()],
+});
 
 export default configs;

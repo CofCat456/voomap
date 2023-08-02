@@ -8,8 +8,6 @@ const { source } = readJSONSync(
   path.resolve(__dirname, '../package.json'),
   'utf-8');
 
-console.log(source);
-
 const configs: RollupOptions[] = [];
 
 configs.push({

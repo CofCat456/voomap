@@ -23,8 +23,8 @@ const mapOptions = {
   zoom: 11,
 };
 
-onMounted(async () => {
-  const { loader } = await useMap(props.apiKey);
+onMounted(() => {
+  const { loader } = useMap(props.apiKey);
 
   loader
     .load()

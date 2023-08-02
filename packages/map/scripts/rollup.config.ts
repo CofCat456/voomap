@@ -38,19 +38,21 @@ for (const format of formats) {
       esbuild(),
       resolve(),
       commonjs(),
-      vue(),
+      vue({ target: 'browser' }),
       postcss(),
     ],
   });
 }
 
 configs.push({
-  input: 'src/types/index.d.ts',
+  input: 'dist/index.esm.mjs',
   output: {
     file: 'dist/index.d.ts',
     format: 'es',
   },
-  plugins: [dts()],
+  plugins: [
+    dts(),
+  ],
 });
 
 export default configs;
