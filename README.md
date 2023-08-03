@@ -108,13 +108,15 @@ const center = reactive<google.maps.LatLngLiteral>({
 
 <template>
   <GoogleMap
-    title="I'm your first marker!"
     :api-key="VITE_GOOGLE_MAP_API_KEY"
     :center="center"
-    :draggable: true
     :zoom="11"
   >
-    <Marker :position="center" />
+    <Marker 
+      title="I'm your first marker!"
+      :draggable: true
+      :position="center"
+    />
   </GoogleMap>
 </template>
 ```
