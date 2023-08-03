@@ -41,7 +41,7 @@
   "peerDependencies": {
     "vue": "^3.3.4"
   },
-  "dependencies": {
-    "@voomap/core": "workspace:*"
+  "devDependencies": {
+    "@voomap/core": "workspace:0.0.1-beta.2"
   }
 }
