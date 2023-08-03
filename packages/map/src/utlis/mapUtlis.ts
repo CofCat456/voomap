@@ -1,7 +1,7 @@
 type Map = google.maps.Map | null
 
 // Map Center
-export function handleCenter(map: Map, value: google.maps.LatLngLiteral) {
+export function handleCenter(map: Map, value: google.maps.LatLng | google.maps.LatLngLiteral) {
   map?.setCenter(value);
 }
 

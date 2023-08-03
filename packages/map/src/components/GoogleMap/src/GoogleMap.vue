@@ -1,42 +1,87 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, unref, watch } from 'vue';
-import type { CofMap } from '@vue3-google-map/types';
+import { computed, markRaw, onMounted, provide, reactive, ref, toRef, unref, watch } from 'vue';
 import { useMap } from '@vue3-google-map/core';
-import { handleCenter, handleZoom, taiwanRestriction } from './utlis';
+import { apiSymbol, mapSymbol } from '../../../inject';
+import { handleCenter, handleZoom, taiwanRestriction } from '../../../utlis/mapUtlis';
+
+interface CofMap {
+  cGoogle: typeof google | null
+  cApi: typeof google.maps | null
+  cMap: google.maps.Map | null
+}
+
+// google.maps.MapOptions
+export interface MapProps {
+  backgroundColor?: string
+  center?: google.maps.LatLng | null | google.maps.LatLngLiteral
+  clickableIcons?: boolean
+  controlSize?: number
+  disableDefaultUI?: boolean
+  disableDoubleClickZoom?: boolean
+  draggable?: boolean
+  draggableCursor?: string
+  draggingCursor?: string
+  fullscreenControl?: boolean
+  fullscreenControlOptions?: google.maps.FullscreenControlOptions | null
+  gestureHandling?: string
+  heading?: number
+  isFractionalZoomEnabled?: boolean
+  keyboardShortcuts?: boolean
+  mapId?: string
+  mapTypeControl?: boolean
+  mapTypeControlOptions?: google.maps.MapTypeControlOptions | null
+  mapTypeId?: string
+  maxZoom?: number
+  minZoom?: number
+  noClear?: boolean
+  panControl?: boolean
+  panControlOptions?: google.maps.PanControlOptions
+  restriction?: google.maps.MapRestriction
+  rotateControl?: boolean
+  rotateControlOptions?: google.maps.RotateControlOptions
+  scaleControl?: boolean
+  scaleControlOptions?: google.maps.ScaleControlOptions
+  scrollwheel?: boolean
+  streetView?: google.maps.StreetViewPanorama
+  streetViewControl?: boolean
+  streetViewControlOptions?: google.maps.StreetViewControlOptions
+  styles?: google.maps.MapTypeStyle[]
+  tilt?: number
+  zoom?: number
+  zoomControl?: boolean
+  zoomControlOptions?: google.maps.ZoomControlOptions
+}
 
 const props = withDefaults(defineProps<{
+  // custom props
   apiKey: string
-  center?: google.maps.LatLngLiteral
-  zoom?: number
-  minZoom?: number
-  maxZoom?: number
-  gestureHandling?: 'none' | 'auto'
-  disableDefaultUI?: boolean
   inTaiwan?: boolean
-  restriction?: google.maps.MapRestriction | null
-  zoomControl?: boolean
-  mapTypeControl?: boolean
-  scaleControl?: boolean
-  streetViewControl?: boolean
-  rotateControl?: boolean
-  fullscreenControl?: boolean
-}>(), {
+} & MapProps>(), {
   center: () => ({ lat: 25.0855388, lng: 121.4791004 }),
-  zoom: 11,
-  minZoom: 8,
-  maxZoom: 15,
-  gestureHandling: 'auto',
-  zoomControl: true,
-  scaleControl: true,
+  clickableIcons: true,
+  draggable: true,
   fullscreenControl: true,
+  gestureHandling: 'auto',
+  isFractionalZoomEnabled: true,
+  maxZoom: 15,
+  minZoom: 8,
+  scaleControl: true,
+  scrollwheel: true,
+  zoom: 11,
+  zoomControl: true,
 });
 
 const mapRef = ref<HTMLElement | null>(null);
 const cofMap: CofMap = reactive({
-  map: null,
+  cGoogle: null,
+  cApi: null,
+  cMap: null,
 });
 
-const getMapOption = computed(() => {
+provide(apiSymbol, toRef(() => cofMap.cApi));
+provide(mapSymbol, toRef(() => cofMap.cMap));
+
+const getMapOption = computed<google.maps.MapOptions>(() => {
   const {
     // eslint-disable-next-line unused-imports/no-unused-vars
     apiKey,
@@ -51,10 +96,6 @@ const getMapOption = computed(() => {
     fullscreenControl,
     ...mapOptions
   } = unref(props);
-
-  // DEV: console
-  // eslint-disable-next-line no-console
-  console.log(mapOptions);
 
   const mapRestriction = inTaiwan
     ? taiwanRestriction
@@ -74,37 +115,40 @@ const getMapOption = computed(() => {
 });
 
 watch(() => props.zoom, (newZoom) => {
-  handleZoom(cofMap?.map, newZoom);
+  if (newZoom)
+    handleZoom(cofMap.cMap, newZoom);
 });
 
 watch(
   () => props.center,
   (newCenter) => {
-    handleCenter(cofMap?.map, newCenter);
+    if (newCenter)
+      handleCenter(cofMap.cMap, newCenter);
   },
   {
     deep: true,
   },
 );
 
-onMounted(() => {
+onMounted(async () => {
   const { loader } = useMap(props.apiKey);
+  cofMap.cGoogle = markRaw(await loader.load());
+  cofMap.cApi = markRaw(cofMap.cGoogle.maps);
 
-  loader
-    .load()
-    .then((_google: typeof google) => {
-      if (mapRef.value)
-        cofMap.map = new google.maps.Map(mapRef.value, getMapOption.value);
+  if (mapRef.value)
+    cofMap.cMap = markRaw(new cofMap.cApi.Map(mapRef.value, getMapOption.value));
 
-      // DEV: console
-      // eslint-disable-next-line no-console
-      console.log(cofMap.map);
-    });
+  // DEV: Map config
+  if (__DEV__) {
+    console.log('init: ', cofMap);
+    console.log('map options:', getMapOption.value);
+  }
 });
 </script>
 
 <template>
   <div id="map" ref="mapRef" />
+  <slot />
 </template>
 
 <style scoped>
