@@ -5,7 +5,7 @@
   "private": true,
   "packageManager": "pnpm@8.6.11",
   "scripts": {
-    "build": "pnpm --filter @voomap build",
+    "build": "pnpm --filter @voomap/map build",
     "build:core": "pnpm --filter @voomap/core build",
     "lint": "eslint './packages/**/*.{ts,vue}'",
     "lint:fix": "pnpm lint --fix",
