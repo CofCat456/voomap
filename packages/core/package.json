@@ -1,11 +1,22 @@
 {
-  "name": "@vue3-google-map/core",
-  "version": "1.0.0",
-  "description": "",
-  "source": "src/index.ts",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.mjs",
-  "types": "dist/index.d.ts",
+  "name": "@voomap/core",
+  "version": "0.0.1-beta.0",
+  "description": "Google Map with Vue3",
+  "author": "CofCat <a25690756@gmail.com>",
+  "license": "ISC",
+  "funding": "https://github.com/CofCat456",
+  "homepage": "https://github.com/CofCat456/voomap#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CofCat456/voomap"
+  },
+  "keywords": [
+    "voomap",
+    "vue3",
+    "composition-api",
+    "map",
+    "google-map"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -13,17 +24,18 @@
       "require": "./dist/index.cjs.js"
     }
   },
+  "source": "src/index.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "dev": "pnpm build:rollup -w",
+    "clean": "rimraf dist",
     "build": "esno scripts/build.ts",
     "build:rollup": "rollup -c",
-    "dev": "pnpm build:rollup -w",
-    "clean": "rimraf dist"
+    "publish:ci": "esno scripts/publish.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.16.2",
-    "@vue3-google-map/types": "workspace:^"
+    "@googlemaps/js-api-loader": "^1.16.2"
   }
 }
