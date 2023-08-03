@@ -1,4 +1,4 @@
-# Vue 3 Google maps Components
+# Voomap 
 
 Easy use of Google Maps with Vue 3
 
@@ -54,10 +54,10 @@ const center = reactive<google.maps.LatLngLiteral>({
   <GoogleMap
     disable-default-u-i
     in-taiwan
-	:api-key="YOUR_GOOGLE_MAPS_API_KEY"
-	:center="center"
-	:zoom="11"
-	:max-zoom="20"
+    :api-key="YOUR_GOOGLE_MAPS_API_KEY"
+    :center="center"
+    :zoom="11"
+    :max-zoom="20"
     :min-zoom="10"
   />
 </template>
@@ -82,8 +82,8 @@ const center = reactive<google.maps.LatLngLiteral>({
 <template>
   <GoogleMap
     :api-key="VITE_GOOGLE_MAP_API_KEY"
-	:center="center"
-	:zoom="11"
+    :center="center"
+    :zoom="11"
   >
     <Marker :position="center" />
   </GoogleMap>
@@ -108,11 +108,11 @@ const center = reactive<google.maps.LatLngLiteral>({
 
 <template>
   <GoogleMap
-	title="I'm your first marker!"
+    title="I'm your first marker!"
     :api-key="VITE_GOOGLE_MAP_API_KEY"
-	:center="center"
+    :center="center"
     :draggable: true
-	:zoom="11"
+    :zoom="11"
   >
     <Marker :position="center" />
   </GoogleMap>
@@ -120,6 +120,9 @@ const center = reactive<google.maps.LatLngLiteral>({
 ```
 
 > Please note that when using `voomap`, you need to pass individual parameters instead of an options `object`. If you are using [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar, you can benefit from excellent intelligent suggestions. Of course, if you want to directly pass an `object`, you can use `v-bind`.
+
+## Code Style
+[![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
 
 ## Future Plans
 
@@ -137,4 +140,4 @@ This project is not yet complete, and I warmly welcome feature requests and impr
 
 # License
 
-[MIT](http://opensource.org/licenses/MIT)
+[MIT](./LICENSE) License &copy; 2023 [CofCat](https://github.com/CofCat456)
