@@ -1,6 +1,7 @@
 <script setup lang="ts">
-// import Basic from './compoments/BasicExample.vue';
-import Marker from './compoments/MarkerExample.vue';
+// import Basic from './components/BasicExample.vue';
+
+import Marker from './components/MarkerExample.vue';
 </script>
 
 <template>
