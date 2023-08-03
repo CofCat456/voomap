@@ -5,19 +5,13 @@ import { readJSONSync } from 'fs-extra';
 
 exec('pnpm build', { stdio: 'inherit' });
 
-const command = 'pnpm publish --access public';
+const command = 'npm publish --access public';
 
 const { name, version } = readJSONSync(
   path.resolve(__dirname, '../package.json'),
   'utf-8',
 );
 
-const tag = version.includes('beta')
-  ? 'beta'
-  : version.includes('rc')
-    ? 'rc'
-    : null;
-
-exec(`${command}${tag ? ` --tag ${tag}` : ''}`, { stdio: 'inherit' });
+exec(`${command}`, { stdio: 'inherit' });
 
 consola.success(`Published ${name} v${version}`);
