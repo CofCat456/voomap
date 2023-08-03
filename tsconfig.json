@@ -9,7 +9,6 @@
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "moduleResolution": "node",
-    "esModuleInterop": true,
     "resolveJsonModule": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
