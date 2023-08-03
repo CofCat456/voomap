@@ -59,6 +59,9 @@ importers:
       lint-staged:
         specifier: ^13.2.3
         version: 13.2.3
+      pnpm:
+        specifier: ^8.6.11
+        version: 8.6.11
       rimraf:
         specifier: ^5.0.1
         version: 5.0.1
@@ -92,21 +95,12 @@ importers:
       '@googlemaps/js-api-loader':
         specifier: ^1.16.2
         version: 1.16.2
-      '@vue3-google-map/types':
-        specifier: workspace:^
-        version: link:../types
 
   packages/map:
     dependencies:
-      '@googlemaps/js-api-loader':
-        specifier: ^1.16.2
-        version: 1.16.2
-      '@vue3-google-map/core':
+      '@voomap/core':
         specifier: workspace:*
         version: link:../core
-      '@vue3-google-map/types':
-        specifier: workspace:*
-        version: link:../types
       vue:
         specifier: ^3.3.4
         version: 3.3.4
@@ -115,7 +109,7 @@ importers:
 
   playground:
     dependencies:
-      '@cofcat/vue3-google-map':
+      '@voomap':
         specifier: workspace:*
         version: link:../packages/map
       vue:
@@ -3731,6 +3725,12 @@ packages:
   /pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
+    dev: true
+
+  /pnpm@8.6.11:
+    resolution: {integrity: sha512-jqknppuj45tDzJsLcLqkAxytBHZXIx9JTYkGNq0/7pSRggpio9wRxTDj4NA2ilOHPlJ5BVjB5Ij5dx65woMi5A==}
+    engines: {node: '>=16.14'}
+    hasBin: true
     dev: true
 
   /postcss-calc@8.2.4(postcss@8.4.27):

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, markRaw, onMounted, provide, reactive, ref, toRef, unref, watch } from 'vue';
-import { useMap } from '@vue3-google-map/core';
+import { useMap } from '@voomap/core';
 import { apiSymbol, mapSymbol } from '../../../inject';
 import { handleCenter, handleZoom, taiwanRestriction } from '../../../utlis/mapUtlis';
 
@@ -140,8 +140,10 @@ onMounted(async () => {
 
   // DEV: Map config
   if (__DEV__) {
+    /* eslint-disable no-console */
     console.log('init: ', cofMap);
     console.log('map options:', getMapOption.value);
+    /* eslint-enable */
   }
 });
 </script>

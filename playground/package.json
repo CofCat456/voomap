@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cofcat/vue3-google-map": "workspace:*",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "@voomap": "workspace:*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

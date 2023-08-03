@@ -37,9 +37,11 @@ const marker = useMap('Marker', markerEvents, ref(props), emit);
 
 // DEV: Marker config
 if (__DEV__) {
+  /* eslint-disable no-console */
   console.log('marker components', marker);
   console.log('marker options:', props);
   console.log('marker events:', markerEvents);
+  /* eslint-enable */
 }
 </script>
 

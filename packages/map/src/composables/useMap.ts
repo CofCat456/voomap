@@ -44,8 +44,10 @@ export function useMap<T extends GoogleComponentsKey>(
 
     // DEV: Watch CofMap
     if (__DEV__) {
+      /* eslint-disable no-console */
       console.log('map:', newMap);
       console.log('api:', api?.value);
+      /* eslint-enable */
     }
 
     const marker = new api.value.Marker({
@@ -55,6 +57,7 @@ export function useMap<T extends GoogleComponentsKey>(
 
     // DEV: Watch marker
     if (__DEV__)
+      // eslint-disable-next-line no-console
       console.log(marker);
 
     if (component.value) {

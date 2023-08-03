@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GoogleMap, Marker } from '@cofcat/vue3-google-map';
+import { GoogleMap, Marker } from '@voomap';
 import { computed, reactive, ref } from 'vue';
 import { createRandomCoordinate } from '../mock';
 
