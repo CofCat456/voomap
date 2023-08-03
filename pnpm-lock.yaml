@@ -27,7 +27,7 @@ importers:
         specifier: ^3.53.5
         version: 3.53.5
       '@types/node':
-        specifier: ^20.4.5
+        specifier: ^20.4.6
         version: 20.4.6
       bumpp:
         specifier: ^9.1.1
@@ -66,7 +66,7 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1
       rollup:
-        specifier: ^3.27.0
+        specifier: ^3.27.1
         version: 3.27.1
       rollup-plugin-dts:
         specifier: ^5.3.1
@@ -98,13 +98,12 @@ importers:
 
   packages/map:
     dependencies:
+      '@voomap/core':
+        specifier: workspace:*
+        version: link:../core
       vue:
         specifier: ^3.3.4
         version: 3.3.4
-    devDependencies:
-      '@voomap/core':
-        specifier: workspace:0.0.1-beta.2
-        version: link:../core
 
   playground:
     dependencies:
@@ -2268,7 +2267,7 @@ packages:
     dependencies:
       debug: 3.2.7
       is-core-module: 2.12.1
-      resolve: 1.22.2
+      resolve: 1.22.3
     transitivePeerDependencies:
       - supports-color
     dev: true
