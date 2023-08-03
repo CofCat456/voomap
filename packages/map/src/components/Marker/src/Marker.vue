@@ -31,7 +31,30 @@ const props = withDefaults(defineProps<MarkerProps>(), {
   visible: true,
 });
 
-const emit = defineEmits(markerEvents);
+const emit = defineEmits<{
+  (e: 'animation_changed', id: number): void
+  (e: 'click', value: string): void
+  (e: 'clickable_changed', value: string): void
+  (e: 'contextmenu', value: string): void
+  (e: 'cursor_changed', value: string): void
+  (e: 'dblclick', value: string): void
+  (e: 'drag', value: string): void
+  (e: 'dragend', value: string): void
+  (e: 'draggable_changed', value: string): void
+  (e: 'dragstart', value: string): void
+  (e: 'flat_changed', value: string): void
+  (e: 'icon_changed', value: string): void
+  (e: 'mousedown', value: string): void
+  (e: 'mouseout', value: string): void
+  (e: 'mouseover', value: string): void
+  (e: 'mouseup', value: string): void
+  (e: 'position_changed', value: string): void
+  (e: 'shape_changed', value: string): void
+  (e: 'hape_changed', value: string): void
+  (e: 'visible_changed', value: string): void
+  (e: 'zindex_changed', value: string): void
+  (e: 'rightclick', value: string): void
+}>();
 
 const marker = useMap('Marker', markerEvents, ref(props), emit);
 
