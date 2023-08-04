@@ -1,6 +1,6 @@
 {
   "name": "@voomap/core",
-  "version": "0.0.1-beta.7",
+  "version": "0.0.1-beta.8",
   "description": "Google Map with Vue3",
   "author": "CofCat <a25690756@gmail.com>",
   "license": "ISC",
