@@ -1,5 +1,5 @@
 import type { Ref } from 'vue';
-import { inject, ref, unref, watch } from 'vue';
+import { inject, onBeforeUnmount, ref, unref, watch } from 'vue';
 import { apiSymbol, mapSymbol } from '../inject';
 
 type GoogleComponentsKey = 'Marker' | 'Polyline' | 'Polygon' | 'Rectangle' | 'Circle';
@@ -75,12 +75,17 @@ export function useMap<T extends GoogleComponentsKey>(
       component.value = marker as GoogleMapComponentType<typeof key>;
 
       events.forEach((event) => {
-        component.value?.addListener(event, (e: unknown) => emit(event, e));
+        component.value?.addListener(event, (e: google.maps.MapMouseEvent) => emit(event, e));
       });
     }
   },
   {
     deep: true,
+  });
+
+  onBeforeUnmount(() => {
+    if (component.value)
+      api.value?.event.clearInstanceListeners(component.value);
   });
 
   return component;

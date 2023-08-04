@@ -27,6 +27,7 @@ function changeCenter() {
     ref="mapRef"
     disable-default-u-i
     in-taiwan
+    :clickable-icons="false"
     :api-key="VITE_GOOGLE_MAP_API_KEY"
     :zoom="zoom"
     :max-zoom="20"
