@@ -90,7 +90,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 </template>
 ```
 
-### options
+### Options
 
 Of course, you can pass in all the [MarkerOptions](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions) to construct your marker.
 

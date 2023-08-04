@@ -121,7 +121,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 </template>
 ```
 
-> Please note that when using `voomap`, you need to pass individual parameters instead of an options `object`. If you are using [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar, you can benefit from excellent intelligent suggestions. Of course, if you want to directly pass an `object`, you can use `v-bind`.
+> Please note that when using `voomap`, you need to pass individual parameters instead of an options `object`. If you are using [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar), you can benefit from excellent intelligent suggestions. Of course, if you want to directly pass an `object`, you can use `v-bind`.
 
 ## Code Style
 [![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
