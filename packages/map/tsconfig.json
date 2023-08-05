@@ -7,7 +7,7 @@
     "isolatedModules": true,
     "allowJs": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./packages/map/src/*"]
     }
   }
 }

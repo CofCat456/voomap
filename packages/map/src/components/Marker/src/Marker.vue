@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useMap } from '../../../composables/index';
-import { markerEvents } from '../../../utlis/events';
-import type { MapMouseEvent } from '../../../types';
+import { useMap } from '@/composables/index';
+import { markerEvents } from '@/utlis/events';
+import type { MapMouseEvent } from '@/types';
 
 type MaybeArray<T> = T | T[];
 
