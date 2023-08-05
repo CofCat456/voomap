@@ -2,6 +2,9 @@
 import { ref } from 'vue';
 import { useMap } from '../../../composables/index';
 import { markerEvents } from '../../../utlis/events';
+import type { MapMouseEvent } from '../../../types';
+
+type MaybeArray<T> = T | T[];
 
 // google.maps.MarkerOptions
 interface MarkerProps {
@@ -21,6 +24,7 @@ interface MarkerProps {
   title?: string
   visible?: boolean
   zIndex?: number
+  onDrag?: MaybeArray<(index: number) => void>
 }
 
 const props = withDefaults(defineProps<MarkerProps>(), {
@@ -32,13 +36,13 @@ const props = withDefaults(defineProps<MarkerProps>(), {
 });
 
 const emit = defineEmits<{
-  (e: 'animation_changed', id: number): void
-  (e: 'click', value: string): void
-  (e: 'clickable_changed', value: string): void
-  (e: 'contextmenu', value: string): void
-  (e: 'cursor_changed', value: string): void
-  (e: 'dblclick', value: string): void
-  (e: 'drag', value: string): void
+  (e: 'animation_changed'): void
+  (e: 'click'): MapMouseEvent
+  (e: 'clickable_changed'): void
+  (e: 'contextmenu'): void
+  (e: 'cursor_changed'): void
+  (e: 'dblclick', mouseEvent: MapMouseEvent): void
+  (e: 'drag'): void
   (e: 'dragend', value: string): void
   (e: 'draggable_changed', value: string): void
   (e: 'dragstart', value: string): void
@@ -64,6 +68,7 @@ if (__DEV__) {
   console.log('marker components', marker);
   console.log('marker options:', props);
   console.log('marker events:', markerEvents);
+  emit('drag');
   /* eslint-enable */
 }
 </script>

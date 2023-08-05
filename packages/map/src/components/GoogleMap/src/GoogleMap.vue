@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, markRaw, onMounted, provide, reactive, ref, toRef, unref, watch } from 'vue';
 import { useMap } from '@voomap/core';
-import { apiSymbol, mapSymbol } from '../../../inject';
-import { handleCenter, handleZoom, taiwanRestriction } from '../../../utlis/mapUtlis';
+import { apiSymbol, mapSymbol } from '@/inject';
+import { handleCenter, handleZoom, taiwanRestriction } from '@/utlis/mapUtlis';
 
 interface CofMap {
   cGoogle: typeof google | null
