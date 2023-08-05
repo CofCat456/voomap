@@ -7,3 +7,16 @@
 - [ ] Provide a description in this PR that addresses **what** the PR is solving, or reference the issue that it solves (e.g. `fixes #123`).
 
 ---
+
+### What is the purpose of this pull request? <!-- (put an "X" next to an item) -->
+
+- [ ] Bug fix
+- [ ] New Feature
+- [ ] Documentation update
+- [ ] Other
+
+---
+
+### Description
+
+---
