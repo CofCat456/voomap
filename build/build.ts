@@ -27,7 +27,9 @@ export default defineConfig({
       fileName: format => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue', /^@voomap.*/],
+      // NOTE: Consider installing @voomap/core as an external dependency once the project is finalized.
+      // external: ['vue', /^@voomap.*/],
+      external: ['vue'],
       output: {
         globals: {
           'vue': 'Vue',
