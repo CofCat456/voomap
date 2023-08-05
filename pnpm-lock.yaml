@@ -89,12 +89,13 @@ importers:
 
   packages/map:
     dependencies:
-      '@voomap/core':
-        specifier: workspace:*
-        version: link:../core
       vue:
         specifier: ^3.3.4
         version: 3.3.4
+    devDependencies:
+      '@voomap/core':
+        specifier: workspace:0.0.1-beta.9
+        version: link:../core
 
   playground:
     dependencies:
