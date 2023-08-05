@@ -32,7 +32,8 @@ export function useMap<T extends GoogleComponentsKey>(
   key: T,
   events: string[],
   options: Ref<GoogleMapComponentOptions<T>>,
-  emit: (event: string, ...args: unknown[]) => void,
+  // FIXME: emit type
+  emit: (event: any, ...args: any) => void,
 ): Ref<GoogleMapComponentType<T> | undefined> {
   const component = ref<GoogleMapComponentType<T>>();
   const map = inject(mapSymbol, ref());

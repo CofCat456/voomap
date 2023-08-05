@@ -2,32 +2,12 @@
 import { ref } from 'vue';
 import { useMap } from '@/composables/index';
 import { markerEvents } from '@/utlis/events';
-import type { MapMouseEvent } from '@/types';
+import type { MapMouseEvent, MarkerOptions } from '@/types';
 
-type MaybeArray<T> = T | T[];
+// NOTE: not support import props
+interface Props extends MarkerOptions {}
 
-// google.maps.MarkerOptions
-interface MarkerProps {
-  anchorPoint?: google.maps.Point
-  animation?: google.maps.Animation
-  clickable?: boolean
-  collisionBehavior?: string
-  crossOnDrag?: boolean
-  cursor?: string
-  draggable?: boolean
-  icon?: string | google.maps.Icon | null | google.maps.Symbol
-  label?: string | google.maps.MarkerLabel
-  opacity?: number
-  optimized?: boolean
-  position?: google.maps.LatLng | null | google.maps.LatLngLiteral
-  shape?: google.maps.MarkerShape
-  title?: string
-  visible?: boolean
-  zIndex?: number
-  onDrag?: MaybeArray<(index: number) => void>
-}
-
-const props = withDefaults(defineProps<MarkerProps>(), {
+const props = withDefaults(defineProps<Props>(), {
   clickable: true,
   crossOnDrag: true,
   cousor: 'pointer',
@@ -37,38 +17,37 @@ const props = withDefaults(defineProps<MarkerProps>(), {
 
 const emit = defineEmits<{
   (e: 'animation_changed'): void
-  (e: 'click'): MapMouseEvent
+  (e: 'click', event: MapMouseEvent): void
   (e: 'clickable_changed'): void
-  (e: 'contextmenu'): void
+  (e: 'contextmenu', event: MapMouseEvent): void
   (e: 'cursor_changed'): void
-  (e: 'dblclick', mouseEvent: MapMouseEvent): void
-  (e: 'drag'): void
-  (e: 'dragend', value: string): void
-  (e: 'draggable_changed', value: string): void
-  (e: 'dragstart', value: string): void
-  (e: 'flat_changed', value: string): void
-  (e: 'icon_changed', value: string): void
-  (e: 'mousedown', value: string): void
-  (e: 'mouseout', value: string): void
-  (e: 'mouseover', value: string): void
-  (e: 'mouseup', value: string): void
-  (e: 'position_changed', value: string): void
-  (e: 'shape_changed', value: string): void
-  (e: 'hape_changed', value: string): void
-  (e: 'visible_changed', value: string): void
-  (e: 'zindex_changed', value: string): void
-  (e: 'rightclick', value: string): void
+  (e: 'dblclick', event: MapMouseEvent): void
+  (e: 'drag', event: MapMouseEvent): void
+  (e: 'dragend', event: MapMouseEvent): void
+  (e: 'draggable_changed'): void
+  (e: 'dragstart', event: MapMouseEvent): void
+  (e: 'flat_changed'): void
+  (e: 'icon_changed'): void
+  (e: 'mousedown', event: MapMouseEvent): void
+  (e: 'mouseout', event: MapMouseEvent): void
+  (e: 'mouseover', event: MapMouseEvent): void
+  (e: 'mouseup', event: MapMouseEvent): void
+  (e: 'position_changed'): void
+  (e: 'shape_changed'): void
+  (e: 'hape_changed'): void
+  (e: 'visible_changed'): void
+  (e: 'zindex_changed'): void
+  (e: 'rightclick'): void
 }>();
 
-const marker = useMap('Marker', markerEvents, ref(props), emit);
+// FIXME: emit type
+const marker = useMap('Marker', markerEvents, ref(props), emit as any);
 
 // DEV: Marker config
 if (__DEV__) {
   /* eslint-disable no-console */
   console.log('marker components', marker);
   console.log('marker options:', props);
-  console.log('marker events:', markerEvents);
-  emit('drag');
   /* eslint-enable */
 }
 </script>

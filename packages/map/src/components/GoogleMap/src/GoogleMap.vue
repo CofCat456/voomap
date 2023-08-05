@@ -3,6 +3,7 @@ import { computed, markRaw, onMounted, provide, reactive, ref, toRef, unref, wat
 import { useMap } from '@voomap/core';
 import { apiSymbol, mapSymbol } from '@/inject';
 import { handleCenter, handleZoom, taiwanRestriction } from '@/utlis/mapUtlis';
+import type { IconMouseEvent, MapMouseEvent, MapOptions } from '@/types';
 
 interface CofMap {
   cGoogle: typeof google | null
@@ -10,53 +11,12 @@ interface CofMap {
   cMap: google.maps.Map | null
 }
 
-// google.maps.MapOptions
-export interface MapProps {
-  backgroundColor?: string
-  center?: google.maps.LatLng | null | google.maps.LatLngLiteral
-  clickableIcons?: boolean
-  controlSize?: number
-  disableDefaultUI?: boolean
-  disableDoubleClickZoom?: boolean
-  draggable?: boolean
-  draggableCursor?: string
-  draggingCursor?: string
-  fullscreenControl?: boolean
-  fullscreenControlOptions?: google.maps.FullscreenControlOptions | null
-  gestureHandling?: string
-  heading?: number
-  isFractionalZoomEnabled?: boolean
-  keyboardShortcuts?: boolean
-  mapId?: string
-  mapTypeControl?: boolean
-  mapTypeControlOptions?: google.maps.MapTypeControlOptions | null
-  mapTypeId?: string
-  maxZoom?: number
-  minZoom?: number
-  noClear?: boolean
-  panControl?: boolean
-  panControlOptions?: google.maps.PanControlOptions
-  restriction?: google.maps.MapRestriction
-  rotateControl?: boolean
-  rotateControlOptions?: google.maps.RotateControlOptions
-  scaleControl?: boolean
-  scaleControlOptions?: google.maps.ScaleControlOptions
-  scrollwheel?: boolean
-  streetView?: google.maps.StreetViewPanorama
-  streetViewControl?: boolean
-  streetViewControlOptions?: google.maps.StreetViewControlOptions
-  styles?: google.maps.MapTypeStyle[]
-  tilt?: number
-  zoom?: number
-  zoomControl?: boolean
-  zoomControlOptions?: google.maps.ZoomControlOptions
-}
-
-const props = withDefaults(defineProps<{
-  // custom props
+interface Props extends MapOptions {
   apiKey: string
   inTaiwan?: boolean
-} & MapProps>(), {
+}
+
+const props = withDefaults(defineProps<Props>(), {
   center: () => ({ lat: 25.0855388, lng: 121.4791004 }),
   clickableIcons: true,
   draggable: true,
@@ -70,6 +30,31 @@ const props = withDefaults(defineProps<{
   zoom: 11,
   zoomControl: true,
 });
+
+defineEmits<{
+  (e: 'bounds_changed'): void
+  (e: 'center_changed'): void
+  (e: 'click', event: MapMouseEvent | IconMouseEvent): void
+  (e: 'contextmenu', event: MapMouseEvent): void
+  (e: 'dblclick', event: MapMouseEvent): void
+  (e: 'drag'): void
+  (e: 'dragend'): void
+  (e: 'dragstart'): void
+  (e: 'heading_changed'): void
+  (e: 'idle'): void
+  (e: 'isfractionalzoomenabled_changed'): void
+  (e: 'mapcapabilities_changed'): void
+  (e: 'maptypeid_changed'): void
+  (e: 'mousemove', event: MapMouseEvent): void
+  (e: 'mouseout', event: MapMouseEvent): void
+  (e: 'mouseover', event: MapMouseEvent): void
+  (e: 'projection_changed'): void
+  (e: 'renderingtype_changed'): void
+  (e: 'tilesloaded'): void
+  (e: 'tilt_changed'): void
+  (e: 'zoom_changed'): void
+  (e: 'rightclick'): void
+}>();
 
 const mapRef = ref<HTMLElement | null>(null);
 const cofMap: CofMap = reactive({
