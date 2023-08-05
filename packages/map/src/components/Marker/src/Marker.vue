@@ -41,7 +41,7 @@ const emit = defineEmits<{
   (e: 'clickable_changed'): void
   (e: 'contextmenu'): void
   (e: 'cursor_changed'): void
-  (e: 'dblclick'): MapMouseEvent
+  (e: 'dblclick', mouseEvent: MapMouseEvent): void
   (e: 'drag'): void
   (e: 'dragend', value: string): void
   (e: 'draggable_changed', value: string): void

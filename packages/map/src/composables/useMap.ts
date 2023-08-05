@@ -55,11 +55,6 @@ export function useMap<T extends GoogleComponentsKey>(
       map: newMap,
     });
 
-    // DEV: Watch marker
-    if (__DEV__)
-      // eslint-disable-next-line no-console
-      console.log(marker);
-
     if (component.value) {
     // FIXME: setOptions type error
       component.value.setOptions(

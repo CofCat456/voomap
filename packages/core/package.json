@@ -17,18 +17,24 @@
     "map",
     "google-map"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "source": "src/index.ts",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.mjs",
-  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "pnpm build:rollup -w",
     "clean": "rimraf dist",
-    "build": "esno scripts/build.ts",
-    "build:rollup": "rollup -c",
+    "build": "vite build --mode production --config ../../build/build-core.ts",
     "publish:ci": "esno scripts/publish.ts"
   },
   "dependencies": {
