@@ -1,11 +1,16 @@
+// @ts-check
+
 import path from 'node:path';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
 import { readJSONSync } from 'fs-extra';
+import VueMacros from 'unplugin-vue-macros/rollup';
+import NodeResolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import esbuild from 'rollup-plugin-esbuild';
 import dts from 'rollup-plugin-dts';
 
 import type { OutputOptions, RollupOptions } from 'rollup';
+
+import options from '../vue-macros.config.js';
 
 const { source } = readJSONSync(
   path.resolve(__dirname, '../package.json'),
@@ -20,7 +25,7 @@ for (const format of formats) {
   const ext = format === 'esm' ? 'mjs' : 'js';
 
   const output: OutputOptions = {
-    name: 'Vue3-google-map',
+    name: 'VoomapCore',
     file: `dist/index.${[format, ext].join('.')}`,
     format,
     globals: {
@@ -33,9 +38,12 @@ for (const format of formats) {
     output,
     external: ['vue'],
     plugins: [
-      esbuild(),
-      resolve(),
+      VueMacros(options),
+      NodeResolve(),
       commonjs(),
+      esbuild({
+        target: 'esnext',
+      }),
     ],
   });
 }

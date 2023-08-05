@@ -24,13 +24,13 @@
       "require": "./dist/index.cjs.js"
     }
   },
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "source": "src/index.ts",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.mjs",
-  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "pnpm build:rollup -w",
     "clean": "rimraf dist",

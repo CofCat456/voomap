@@ -12,6 +12,10 @@
     "resolveJsonModule": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@voomap/core": ["./packages/core/src/index.ts"],
+      "@voomap/map": ["./packages/map/src/index.ts"]
+    },
     "jsx": "preserve"
   },
   "include": [

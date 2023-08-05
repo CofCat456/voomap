@@ -1,7 +1,7 @@
 import { execSync as exec } from 'node:child_process';
 import path, { resolve } from 'node:path';
 import consola from 'consola';
-import { copyFileSync, readJSONSync } from 'fs-extra';
+import { copyFileSync, readJSONSync, removeSync } from 'fs-extra';
 
 exec('pnpm build', { stdio: 'inherit' });
 
@@ -21,4 +21,5 @@ copyFileSync(
 
 exec(`${command}`, { stdio: 'inherit' });
 
+removeSync(readmePath);
 consola.success(`Published ${name} v${version}`);

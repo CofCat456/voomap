@@ -17,13 +17,6 @@
     "map",
     "google-map"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.mjs",
-      "require": "./dist/index.cjs.js"
-    }
-  },
   "files": [
     "dist"
   ],
