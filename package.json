@@ -18,12 +18,11 @@
     "release": "bumpp -r && esno scripts/publish.ts"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.40.0",
+    "@antfu/eslint-config": "^0.40.2",
     "@types/fs-extra": "^11.0.1",
     "@types/google.maps": "^3.53.6",
     "@types/node": "^20.4.8",
     "@vitejs/plugin-vue": "^4.2.3",
-    "@vitejs/plugin-vue-jsx": "^3.0.1",
     "bumpp": "^9.1.1",
     "consola": "^3.2.3",
     "eslint": "^8.46.0",
