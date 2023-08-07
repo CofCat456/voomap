@@ -1,31 +1,7 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",
-    "baseUrl": ".",
-    "target": "es2020",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "noUnusedLocals": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "paths": {
-      "@voomap/core": ["./packages/core/src/index.ts"],
-      "@voomap/map": ["./packages/map/src/index.ts"]
-    },
-    "jsx": "preserve"
-  },
-  "include": [
-    "./*.ts",
-    "./**/*.ts",
-    "./docs/.vitepress/**/*.ts",
-    "./docs/.vitepress/**/*.vue",
-    "./packages/**/*.d.ts",
-    "./packages/**/*.ts",
-    "./packages/**/*.vue"
-  ],
-  "exclude": ["**/dist/**", "node_modules"]
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.base.json" },
+    { "path": "./tsconfig.vite.json" }
+  ]
 }

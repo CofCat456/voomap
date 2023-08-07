@@ -1,13 +1,32 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { provide, ref } from 'vue';
 import { useMap } from '@/composables/index';
 import { markerEvents } from '@/utlis/events';
-import type { MapMouseEvent, MarkerOptions } from '@/types';
+import type { MapMouseEvent } from '@/types';
+import { markerSymbol } from '@/inject';
+
+// FIXME: Cannot use betterDefine, need detailed testing.
+interface MarkerOptions {
+  anchorPoint?: google.maps.Point
+  animation?: google.maps.Animation
+  clickable?: boolean
+  collisionBehavior?: string
+  crossOnDrag?: boolean
+  cursor?: string
+  draggable?: boolean
+  icon?: string | google.maps.Icon | null | google.maps.Symbol
+  label?: string | google.maps.MarkerLabel
+  opacity?: number
+  optimized?: boolean
+  position?: google.maps.LatLng | null | google.maps.LatLngLiteral
+  shape?: google.maps.MarkerShape
+  title?: string
+  visible?: boolean
+  zIndex?: number
+}
 
 // NOTE: not support import props
-interface Props extends MarkerOptions {}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<MarkerOptions>(), {
   clickable: true,
   crossOnDrag: true,
   cousor: 'pointer',
@@ -34,7 +53,7 @@ const emit = defineEmits<{
   (e: 'mouseup', event: MapMouseEvent): void
   (e: 'position_changed'): void
   (e: 'shape_changed'): void
-  (e: 'hape_changed'): void
+  (e: 'title_changed'): void
   (e: 'visible_changed'): void
   (e: 'zindex_changed'): void
   (e: 'rightclick'): void
@@ -42,16 +61,11 @@ const emit = defineEmits<{
 
 // FIXME: emit type
 const marker = useMap('Marker', markerEvents, ref(props), emit as any);
-
-// DEV: Marker config
-if (__DEV__) {
-  /* eslint-disable no-console */
-  console.log('marker components', marker);
-  console.log('marker options:', props);
-  /* eslint-enable */
-}
+provide(markerSymbol, marker);
 </script>
 
 <template>
-  <slot />
+  <div class="marker">
+    <slot />
+  </div>
 </template>

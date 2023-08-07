@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import { replaceCodePlugin } from 'vite-plugin-replace';
 import VitePluginStyleInject from 'vite-plugin-style-inject';
-import VueMacros from 'unplugin-vue-macros/rollup';
+import VueMacros from 'unplugin-vue-macros/vite';
 import dts from 'vite-plugin-dts';
 
 import options from '../vue-macros.config';
