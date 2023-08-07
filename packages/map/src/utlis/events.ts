@@ -22,3 +22,12 @@ export const markerEvents = [
   'zindex_changed',
   'rightclick',
 ];
+
+export const infoWindowEvents = [
+  'closeclick',
+  'content_changed',
+  'domready',
+  'position_changed',
+  'visible',
+  'zindex_changed',
+];

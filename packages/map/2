@@ -1,8 +1,7 @@
 import type { Ref } from 'vue';
 import { inject, onBeforeUnmount, ref, unref, watch } from 'vue';
 import { apiSymbol, mapSymbol } from '../inject';
-import { hasChanged } from '../utlis';
-import type { Marker, MarkerOptions } from '@/types';
+import { Marker, MarkerOptions } from '@/types';
 
 type GoogleComponentsKey = 'Marker' | 'Polyline' | 'Polygon' | 'Rectangle' | 'Circle';
 
@@ -34,25 +33,34 @@ export function useMap<T extends GoogleComponentsKey>(
   key: T,
   events: string[],
   options: Ref<GoogleMapComponentOptions<T>>,
+  // FIXME: emit type
   emit: (event: any, ...args: any) => void,
 ): Ref<GoogleMapComponentType<T> | undefined> {
   const component = ref<GoogleMapComponentType<T>>();
   const map = inject(mapSymbol, ref());
   const api = inject(apiSymbol, ref());
 
-  // NOTE: avoiding redundant rendering.
-  watch([map, options], (_, [oldMap, oldOptions]) => {
-    if (!map.value || !api.value || !(hasChanged(options.value, oldOptions) || hasChanged(map.value, oldMap)))
+  watch([map, options], ([_, newOptions]) => {
+    if (!map.value || !api.value)
       return;
 
+    // DEV: Watch CofMap
+    if (__DEV__) {
+      /* eslint-disable no-console */
+      console.log('map:', map.value);
+      console.log('api:', api?.value);
+      /* eslint-enable */
+    }
+
     const marker = new api.value.Marker({
-      ...unref(options),
+      ...unref(newOptions),
       map: map.value,
     });
 
     if (component.value) {
+    // FIXME: setOptions type error
       component.value.setOptions(
-        options as (
+        newOptions as (
           MarkerOptions
           & google.maps.PolylineOptions
           & google.maps.PolygonOptions
@@ -64,13 +72,12 @@ export function useMap<T extends GoogleComponentsKey>(
       component.value = marker as GoogleMapComponentType<typeof key>;
 
       events.forEach((event) => {
-        component.value?.addListener(event, (e: any) => emit(event, e));
+        component.value?.addListener(event, (e: google.maps.MapMouseEvent | undefined) => emit(event, e));
       });
     }
   },
   {
     deep: true,
-    immediate: true,
   });
 
   onBeforeUnmount(() => {
