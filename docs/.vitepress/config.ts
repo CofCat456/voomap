@@ -29,7 +29,7 @@ const api = [
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Voomap',
-  titleTemplate: 'Voomap - Easy use of Google Maps with Composition API',
+  titleTemplate: 'Easy use of Google Maps with Composition API',
   description: 'Easy use of Google Maps with Composition API',
 
   head: [

@@ -36,7 +36,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 </template>
 ```
 
-Refer to documentations for more details.
+Refer to [documentations](https://voomap.vercel.app/) for more details.
 
 ### Marker
 
