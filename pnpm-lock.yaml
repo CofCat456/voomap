@@ -86,6 +86,9 @@ importers:
       '@googlemaps/markerclusterer':
         specifier: ^2.4.0
         version: 2.4.0
+      '@voomap/core':
+        specifier: workspace:0.0.1-beta.15
+        version: link:../core
       vue:
         specifier: ^3.3.4
         version: 3.3.4
@@ -93,9 +96,6 @@ importers:
       '@types/google.maps':
         specifier: ^3.53.6
         version: 3.53.6
-      '@voomap/core':
-        specifier: workspace:*
-        version: link:../core
 
   playground:
     dependencies:

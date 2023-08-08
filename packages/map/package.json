@@ -38,13 +38,13 @@
     "publish:ci": "esno scripts/publish.ts"
   },
   "peerDependencies": {
-    "vue": "^3.3.4"
+    "vue": ">=3.3.0"
   },
   "dependencies": {
-    "@googlemaps/markerclusterer": "^2.4.0"
+    "@googlemaps/markerclusterer": "^2.4.0",
+    "@voomap/core": "workspace:0.0.1-beta.15"
   },
   "devDependencies": {
-    "@types/google.maps": "^3.53.6",
-    "@voomap/core": "workspace:*"
+    "@types/google.maps": "^3.53.6"
   }
 }

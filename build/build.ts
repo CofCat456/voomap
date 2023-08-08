@@ -27,7 +27,7 @@ export default defineConfig({
       fileName: format => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue', /^@googlemaps.*/, '@types/google.maps'],
+      external: ['vue', /^@googlemaps.*/, /^@voomap.*/],
       output: {
         globals: {
           'vue': 'Vue',
