@@ -1,6 +1,6 @@
 {
   "name": "@voomap/core",
-  "version": "0.0.1-beta.17",
+  "version": "0.0.1-beta.18",
   "description": "Google Maps with Composition API",
   "author": "CofCat <a25690756@gmail.com>",
   "license": "ISC",
@@ -35,7 +35,7 @@
     "dev": "pnpm build:rollup -w",
     "clean": "rimraf dist",
     "build": "vite build --mode production --config ../../build/build-core.ts",
-    "publish:ci": "esno scripts/publish.ts"
+    "publish": "esno scripts/publish.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.2"
