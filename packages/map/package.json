@@ -19,14 +19,14 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     }
   },
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "pnpm build:rollup -w",
     "clean": "rimraf dist",
-    "build": "vite build --config ../../build/build.ts --mode staging",
+    "build": "vite build --config ../../build/build.ts",
     "publish:ci": "esno scripts/publish.ts"
   },
   "peerDependencies": {

@@ -7,7 +7,7 @@ const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
 
 const zoom = ref(12);
 const center = reactive<google.maps.LatLngLiteral>(createRandomCoordinate());
-const mapRef = ref<InstanceType<typeof GoogleMap> | null>(null);
+const singleRef = ref<InstanceType<typeof InfoWindow> | null>(null);
 
 function handleZoomIn(value: number) {
   zoom.value = ++value;
@@ -34,29 +34,32 @@ function handleCloseClick() {
 
 <template>
   <GoogleMap
-    ref="mapRef"
     disable-default-u-i
     in-taiwan
     :clickable-icons="false"
     :api-key="VITE_GOOGLE_MAP_API_KEY"
-    :zoom="20"
+    :zoom="zoom"
     :center="center"
   >
-    <!-- <Marker v-for="key in 10" :key="key" :title="key.toString()" :position="createRandomCoordinate" /> -->
     <Marker
       v-for="item in 2"
       :key="item"
       :title="`I'm your ${item} marker!`"
       :position="createRandomCoordinate()"
-      :opacity="10"
       @dblclick="handleClick"
     >
-      <InfoWindow @closeclick="handleCloseClick">
+      <InfoWindow>
         <div style="padding: 8px;">
           {{ `I'm your ${item} infoWindow!` }}
         </div>
       </InfoWindow>
     </Marker>
+    <InfoWindow
+      ref="singleRef"
+      content="I'm single qq"
+      :position="createRandomCoordinate()"
+      @closeclick="handleCloseClick"
+    />
   </GoogleMap>
   <button type="button" style="bottom: 20px; left: 10px" @click="changeCenter()">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20 1v3h3v2h-3v3h-2V6h-3V4h3V1h2zm-8 12c1.1 0 2-.9 2-2s-.9-2-2-2s-2 .9-2 2s.9 2 2 2zm2-9.75V7h3v3h2.92c.05.39.08.79.08 1.2c0 3.32-2.67 7.25-8 11.8c-5.33-4.55-8-8.48-8-11.8C4 6.22 7.8 3 12 3c.68 0 1.35.08 2 .25z" /></svg>

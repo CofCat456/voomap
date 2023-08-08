@@ -1,3 +1,28 @@
+export const mapEvents = [
+  'bounds_changed',
+  'center_changed',
+  'click',
+  'contextmenu',
+  'dblclick',
+  'drag',
+  'dragend',
+  'dragstart',
+  'heading_changed',
+  'idle',
+  'isfractionalzoomenabled_changed',
+  'mapcapabilities_changed',
+  'maptypeid_changed',
+  'mousemove',
+  'mouseout',
+  'mouseover',
+  'projection_changed',
+  'renderingtype_changed',
+  'tilesloaded',
+  'tilt_changed',
+  'zoom_changed',
+  'rightclick',
+];
+
 export const markerEvents = [
   'animation_changed',
   'click',

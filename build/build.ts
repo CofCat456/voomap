@@ -50,6 +50,7 @@ export default defineConfig({
     VitePluginStyleInject(),
     VueMacros(options),
     dts({
+      outDir: 'dist/types',
       rollupTypes: true,
     }),
   ],

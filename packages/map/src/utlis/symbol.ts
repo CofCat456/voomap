@@ -1,5 +1,5 @@
 import type { InjectionKey, Ref } from 'vue';
-import type { Map, Marker } from '@/types';
+import type { Map, Marker } from '../types';
 
 export const mapSymbol: InjectionKey<Ref<Map | null>> = Symbol('map');
 export const apiSymbol: InjectionKey<Ref<typeof google.maps | null>> = Symbol('api');

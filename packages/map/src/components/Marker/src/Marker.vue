@@ -1,25 +1,26 @@
 <script setup lang="ts">
+import type { Ref } from 'vue';
 import { provide, ref } from 'vue';
 import { useMap } from '@/composables/index';
 import { markerEvents } from '@/utlis/events';
-import type { MapMouseEvent } from '@/types';
-import { markerSymbol } from '@/inject';
+import type { Icon, LatLng, LatLngLiteral, MapMouseEvent, MarkerLabel, MarkerShape, Point } from '@/types';
+import { markerSymbol } from '@/utlis/symbol';
 
 // FIXME: Cannot use betterDefine, need detailed testing.
 interface MarkerOptions {
-  anchorPoint?: google.maps.Point
-  animation?: google.maps.Animation
+  anchorPoint?: Point
+  animation?: Animation
   clickable?: boolean
   collisionBehavior?: string
   crossOnDrag?: boolean
   cursor?: string
   draggable?: boolean
-  icon?: string | google.maps.Icon | null | google.maps.Symbol
-  label?: string | google.maps.MarkerLabel
+  icon?: string | Icon | null | symbol
+  label?: string | MarkerLabel
   opacity?: number
   optimized?: boolean
-  position?: google.maps.LatLng | null | google.maps.LatLngLiteral
-  shape?: google.maps.MarkerShape
+  position?: LatLng | null | LatLngLiteral
+  shape?: MarkerShape
   title?: string
   visible?: boolean
   zIndex?: number
@@ -60,8 +61,13 @@ const emit = defineEmits<{
 }>();
 
 // FIXME: emit type
-const marker = useMap('Marker', markerEvents, ref(props), emit as any);
+const marker = useMap('Marker', markerEvents, ref(props) as Ref<google.maps.MarkerOptions>, emit as any);
+
 provide(markerSymbol, marker);
+
+defineExpose({
+  marker,
+});
 </script>
 
 <template>

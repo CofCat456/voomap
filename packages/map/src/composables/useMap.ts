@@ -1,6 +1,6 @@
 import type { Ref } from 'vue';
 import { inject, onBeforeUnmount, ref, unref, watch } from 'vue';
-import { apiSymbol, mapSymbol } from '../inject';
+import { apiSymbol, mapSymbol } from '../utlis/symbol';
 import { hasChanged } from '../utlis';
 import type { Marker, MarkerOptions } from '@/types';
 
@@ -69,7 +69,6 @@ export function useMap<T extends GoogleComponentsKey>(
     }
   },
   {
-    deep: true,
     immediate: true,
   });
 

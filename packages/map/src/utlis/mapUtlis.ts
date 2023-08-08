@@ -1,15 +1,3 @@
-type Map = google.maps.Map | null
-
-// Map Center
-export function handleCenter(map: Map, value: google.maps.LatLng | google.maps.LatLngLiteral) {
-  map?.setCenter(value);
-}
-
-// Map Zoom
-export function handleZoom(map: Map, value: number) {
-  map?.setZoom(value);
-}
-
 // Map Restriction latLngBounds
 export const taiwanBounds: google.maps.LatLngBounds | google.maps.LatLngBoundsLiteral = {
   north: 26.1423668,

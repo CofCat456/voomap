@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { computed, markRaw, onMounted, provide, reactive, ref, toRef, unref, watch } from 'vue';
+import { computed, markRaw, onBeforeUnmount, onMounted, provide, reactive, ref, toRef, unref, watch } from 'vue';
 import { useMap } from '@voomap/core';
-import { apiSymbol, mapSymbol } from '@/inject';
-import { handleCenter, handleZoom, taiwanRestriction } from '@/utlis/mapUtlis';
-import type { IconMouseEvent, Map, MapMouseEvent } from '@/types';
+import { apiSymbol, mapSymbol } from '@/utlis/symbol';
+import { taiwanRestriction } from '@/utlis/mapUtlis';
+import { hasChanged, transformCenter } from '@/utlis';
+import { mapEvents } from '@/utlis/events';
+import type { FullscreenControlOptions, IconMouseEvent, LatLng, LatLngLiteral, Map, MapMouseEvent, MapRestriction, MapTypeControlOptions, MapTypeStyle, PanControlOptions, RotateControlOptions, ScaleControlOptions, StreetViewControlOptions, StreetViewPanorama, ZoomControlOptions } from '@/types';
 
 interface CofMap {
   cGoogle: typeof google | null
@@ -14,7 +16,7 @@ interface CofMap {
 // FIXME: Cannot use betterDefine, need detailed testing.
 interface MapOptions {
   backgroundColor?: string
-  center?: google.maps.LatLng | null | google.maps.LatLngLiteral
+  center?: LatLng | null | LatLngLiteral
   clickableIcons?: boolean
   controlSize?: number
   disableDefaultUI?: boolean
@@ -23,34 +25,34 @@ interface MapOptions {
   draggableCursor?: string
   draggingCursor?: string
   fullscreenControl?: boolean
-  fullscreenControlOptions?: google.maps.FullscreenControlOptions | null
+  fullscreenControlOptions?: FullscreenControlOptions | null
   gestureHandling?: string
   heading?: number
   isFractionalZoomEnabled?: boolean
   keyboardShortcuts?: boolean
   mapId?: string
   mapTypeControl?: boolean
-  mapTypeControlOptions?: google.maps.MapTypeControlOptions | null
+  mapTypeControlOptions?: MapTypeControlOptions | null
   mapTypeId?: string
   maxZoom?: number
   minZoom?: number
   noClear?: boolean
   panControl?: boolean
-  panControlOptions?: google.maps.PanControlOptions
-  restriction?: google.maps.MapRestriction
+  panControlOptions?: PanControlOptions
+  restriction?: MapRestriction
   rotateControl?: boolean
-  rotateControlOptions?: google.maps.RotateControlOptions
+  rotateControlOptions?: RotateControlOptions
   scaleControl?: boolean
-  scaleControlOptions?: google.maps.ScaleControlOptions
+  scaleControlOptions?: ScaleControlOptions
   scrollwheel?: boolean
-  streetView?: google.maps.StreetViewPanorama
+  streetView?: StreetViewPanorama
   streetViewControl?: boolean
-  streetViewControlOptions?: google.maps.StreetViewControlOptions
-  styles?: google.maps.MapTypeStyle[]
+  streetViewControlOptions?: StreetViewControlOptions
+  styles?: MapTypeStyle[]
   tilt?: number
   zoom?: number
   zoomControl?: boolean
-  zoomControlOptions?: google.maps.ZoomControlOptions
+  zoomControlOptions?: ZoomControlOptions
 }
 
 interface Props extends MapOptions {
@@ -73,7 +75,7 @@ const props = withDefaults(defineProps<Props>(), {
   zoomControl: true,
 });
 
-defineEmits<{
+const emit = defineEmits<{
   (e: 'bounds_changed'): void
   (e: 'center_changed'): void
   (e: 'click', event: MapMouseEvent | IconMouseEvent): void
@@ -141,22 +143,6 @@ const getMapOption = computed<MapOptions>(() => {
   };
 });
 
-watch(() => props.zoom, (newZoom) => {
-  if (newZoom)
-    handleZoom(cofMap.cMap, newZoom);
-});
-
-watch(
-  () => props.center,
-  (newCenter) => {
-    if (newCenter)
-      handleCenter(cofMap.cMap, newCenter);
-  },
-  {
-    deep: true,
-  },
-);
-
 async function initMap() {
   const { loader } = useMap(props.apiKey);
   cofMap.cGoogle = markRaw(await loader.load());
@@ -165,21 +151,40 @@ async function initMap() {
   if (mapRef.value)
     cofMap.cMap = markRaw(new cofMap.cApi.Map(mapRef.value, getMapOption.value));
 
-  // FIXME: zoom center change
-  watch(
-    getMapOption,
-    (options) => {
-      // FIXME: google map catn render
-      // eslint-disable-next-line no-console
-      console.log('watch option: ', options);
+  mapEvents.forEach((event: any) => {
+    cofMap.cMap?.addListener(event, (e: any) => emit(event, e));
+  });
 
-      cofMap.cMap?.setOptions(options);
+  watch(
+    [() => unref(props.center), () => props.zoom],
+    ([center, zoom], [_oldCenter, oldZoom]) => {
+      const oldCenter = transformCenter(cofMap.cMap?.getCenter());
+
+      if (zoom && zoom !== oldZoom)
+        cofMap.cMap?.setZoom(zoom);
+
+      if (center && hasChanged(center, oldCenter))
+        cofMap.cMap?.panTo(center);
+
+      // FIXME: setOptions
+      // cofMap.cMap?.setOptions(getMapOption.value);
     },
-  );
+    {
+      deep: true,
+    });
 }
 
 onMounted(() => {
   initMap();
+});
+
+onBeforeUnmount(() => {
+  if (cofMap.cMap)
+    cofMap.cApi?.event.clearInstanceListeners(cofMap.cMap);
+});
+
+defineExpose({
+  cMap: cofMap.cMap,
 });
 </script>
 
