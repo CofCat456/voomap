@@ -22,8 +22,8 @@ const emit = defineEmits<{
   (e: 'zindex_changed'): void
 }>();
 
-const infoWindow = ref<InfoWindow | null>(null);
-const infoWindowRef = ref<HTMLElement | null>(null);
+const infoWindow = ref<InfoWindow>();
+const infoWindowRef = ref<HTMLElement>();
 
 const map = inject(mapSymbol, ref());
 const api = inject(apiSymbol, ref());
@@ -38,7 +38,7 @@ function open(opts?: InfoWindowOpenOptions) {
 const close = () => infoWindow.value?.close();
 
 onMounted(() => {
-  watch(map, (_) => {
+  watch(map, () => {
     if (map.value && api.value) {
       if (infoWindow.value) {
         infoWindow.value.setOptions({

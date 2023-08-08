@@ -40,6 +40,9 @@
   "peerDependencies": {
     "vue": "^3.3.4"
   },
+  "dependencies": {
+    "@googlemaps/markerclusterer": "^2.4.0"
+  },
   "devDependencies": {
     "@voomap/core": "workspace:*"
   }

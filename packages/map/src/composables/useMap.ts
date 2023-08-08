@@ -1,47 +1,8 @@
 import type { Ref } from 'vue';
-import { inject, onBeforeUnmount, ref, unref, watch } from 'vue';
-import { apiSymbol, mapSymbol } from '../utlis/symbol';
+import { computed, inject, onBeforeUnmount, ref, unref, watch } from 'vue';
+import { apiSymbol, mapSymbol, markerClustererSymbol } from '../utlis/symbol';
 import { hasChanged } from '../utlis';
-import type { Marker, MarkerOptions } from '@/types';
-import type { MarkerEvent } from '@/utlis/events';
-
-type GoogleComponentsKey = 'Marker' | 'Polyline' | 'Polygon' | 'Rectangle' | 'Circle';
-
-type GoogleMapComponentType<T> = T extends 'Marker'
-  ? Marker
-  : T extends 'Polyline'
-    ? google.maps.Polyline
-    : T extends 'Polygon'
-      ? google.maps.Polygon
-      : T extends 'Rectangle'
-        ? google.maps.Rectangle
-        : T extends 'Circle'
-          ? google.maps.Circle
-          : never;
-
-type GoogleMapComponentEvents<T> = T extends 'Marker'
-  ? MarkerEvent
-  : T extends 'Polyline'
-    ? MarkerEvent
-    : T extends 'Polygon'
-      ? MarkerEvent
-      : T extends 'Rectangle'
-        ? MarkerEvent
-        : T extends 'Circle'
-          ? MarkerEvent
-          : never;
-
-type GoogleMapComponentOptions<T> = T extends 'Marker'
-  ? MarkerOptions
-  : T extends 'Polyline'
-    ? google.maps.PolylineOptions
-    : T extends 'Polygon'
-      ? google.maps.PolygonOptions
-      : T extends 'Rectangle'
-        ? google.maps.RectangleOptions
-        : T extends 'Circle'
-          ? google.maps.CircleOptions
-          : never;
+import type { GoogleComponentsKey, GoogleMapComponentEvents, GoogleMapComponentOptions, GoogleMapComponentType, Marker, MarkerOptions } from '@/types';
 
 export function useMap<T extends GoogleComponentsKey>(
   key: T,
@@ -52,6 +13,9 @@ export function useMap<T extends GoogleComponentsKey>(
   const component = ref<GoogleMapComponentType<T>>();
   const map = inject(mapSymbol, ref());
   const api = inject(apiSymbol, ref());
+  const markerClusterer = inject(markerClustererSymbol, ref());
+
+  const hasMarkerInCluster = computed(() => !!markerClusterer.value);
 
   // NOTE: avoiding redundant rendering.
   watch([map, options], (_, [oldMap, oldOptions]) => {
@@ -72,9 +36,17 @@ export function useMap<T extends GoogleComponentsKey>(
           & google.maps.RectangleOptions
           & google.maps.CircleOptions
         ) | null);
+
+      if (hasMarkerInCluster.value) {
+        markerClusterer.value?.removeMarker(component.value as Marker);
+        markerClusterer.value?.addMarker(component.value as Marker);
+      }
     }
     else {
       component.value = marker as GoogleMapComponentType<typeof key>;
+
+      if (hasMarkerInCluster.value)
+        markerClusterer.value?.addMarker(component.value as Marker);
 
       events.forEach((event) => {
         component.value?.addListener(event, (e: any) => emit(event, e));
@@ -88,6 +60,9 @@ export function useMap<T extends GoogleComponentsKey>(
   onBeforeUnmount(() => {
     if (component.value)
       api.value?.event.clearInstanceListeners(component.value);
+
+    if (hasMarkerInCluster.value)
+      markerClusterer.value?.removeMarker(component.value as Marker);
   });
 
   return component;

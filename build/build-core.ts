@@ -23,11 +23,11 @@ export default defineConfig({
       fileName: format => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', /^@googlemaps.*/],
       output: {
         globals: {
           'vue': 'Vue',
-          '@googlemaps/js-api-loader': 'jsApiLoader',
+          '@googlemaps/js-api-loader': 'JsApiLoader',
         },
       },
     },

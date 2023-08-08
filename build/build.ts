@@ -27,13 +27,13 @@ export default defineConfig({
       fileName: format => `index.${format}.js`,
     },
     rollupOptions: {
-      // NOTE: Consider installing @voomap/core as an external dependency once the project is finalized.
-      // external: ['vue', /^@voomap.*/],
-      external: ['vue'],
+      external: ['vue', /^@googlemaps.*/],
       output: {
         globals: {
           'vue': 'Vue',
           '@voomap/core': 'VoomapCore',
+          '@googlemaps/markerclusterer': 'Markerclusterer',
+          '@googlemaps/js-api-loader': 'JsApiLoader',
         },
       },
     },

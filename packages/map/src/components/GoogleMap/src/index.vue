@@ -8,9 +8,9 @@ import { mapEvents } from '@/utlis/events';
 import type { FullscreenControlOptions, IconMouseEvent, LatLng, LatLngLiteral, Map, MapMouseEvent, MapRestriction, MapTypeControlOptions, MapTypeStyle, PanControlOptions, RotateControlOptions, ScaleControlOptions, StreetViewControlOptions, StreetViewPanorama, ZoomControlOptions } from '@/types';
 
 interface CofMap {
-  cGoogle: typeof google | null
-  cApi: typeof google.maps | null
-  cMap: Map | null
+  cGoogle: typeof google | undefined
+  cApi: typeof google.maps | undefined
+  cMap: Map | undefined
 }
 
 // FIXME: Cannot use betterDefine, need detailed testing.
@@ -100,11 +100,11 @@ const emit = defineEmits<{
   (e: 'rightclick'): void
 }>();
 
-const mapRef = ref<HTMLElement | null>(null);
+const mapRef = ref<HTMLElement>();
 const cofMap: CofMap = reactive({
-  cGoogle: null,
-  cApi: null,
-  cMap: null,
+  cGoogle: undefined,
+  cApi: undefined,
+  cMap: undefined,
 });
 
 provide(apiSymbol, toRef(() => cofMap.cApi));

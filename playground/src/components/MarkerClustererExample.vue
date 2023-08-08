@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { GoogleMap, Marker } from '@voomap/map';
+import { GoogleMap, Marker, MarkerClusterer } from '@voomap/map';
 import { reactive, ref } from 'vue';
+import { GridAlgorithm } from '@googlemaps/markerclusterer';
 import { createRandomCoordinate } from '../mock';
 
 const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
@@ -8,10 +9,9 @@ const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
 const zoom = ref(12);
 const center = reactive<google.maps.LatLngLiteral>(createRandomCoordinate());
 
-function handleClick(e: google.maps.MapMouseEvent) {
-  // eslint-disable-next-line no-console
-  console.log('click', e.latLng);
-}
+const algorithm = new GridAlgorithm({
+  gridSize: 60,
+});
 </script>
 
 <template>
@@ -23,12 +23,14 @@ function handleClick(e: google.maps.MapMouseEvent) {
     :zoom="zoom"
     :center="center"
   >
-    <!-- <Marker v-for="key in 10" :key="key" :title="key.toString()" :position="createRandomCoordinate" /> -->
-    <Marker
-      title="I'm your first marker!"
-      :position="createRandomCoordinate()"
-      :opacity="10"
-      @dblclick="handleClick"
-    />
+    <MarkerClusterer :algorithm="algorithm">
+      <Marker
+        v-for="marker in 500"
+        :key="marker"
+        :title="`I'm your ${marker} marker!`"
+        :position="createRandomCoordinate()"
+        :opacity="10"
+      />
+    </MarkerClusterer>
   </GoogleMap>
 </template>
