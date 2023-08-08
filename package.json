@@ -1,6 +1,5 @@
 {
   "name": "@voomap/monorepo",
-  "type": "module",
   "version": "0.0.1-beta.19",
   "private": true,
   "packageManager": "pnpm@8.6.11",
@@ -14,12 +13,12 @@
     "docs:dev": "vitepress dev docs --port 2222",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs --port 8080",
-    "release": "bumpp -r && pnpm -r publish"
+    "release": "bumpp -r && esno scripts/publish.ts"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.40.2",
     "@types/fs-extra": "^11.0.1",
-    "@types/node": "^20.4.8",
+    "@types/node": "^20.4.9",
     "@vitejs/plugin-vue": "^4.2.3",
     "bumpp": "^9.1.1",
     "consola": "^3.2.3",
@@ -32,8 +31,8 @@
     "pnpm": "^8.6.12",
     "rimraf": "^5.0.1",
     "typescript": "^5.1.6",
-    "unplugin-vue-macros": "^2.4.3",
-    "vite": "^4.4.8",
+    "unplugin-vue-macros": "^2.4.4",
+    "vite": "^4.4.9",
     "vite-plugin-dts": "^3.5.1",
     "vite-plugin-replace": "^0.1.1",
     "vite-plugin-style-inject": "^0.0.1",
