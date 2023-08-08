@@ -7,17 +7,7 @@ const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
 
 const zoom = ref(12);
 const center = reactive<google.maps.LatLngLiteral>(createRandomCoordinate());
-const singleRef = ref<InstanceType<typeof InfoWindow> | null>(null);
-
-function handleClick(e: google.maps.MapMouseEvent) {
-  // eslint-disable-next-line no-console
-  console.log('click', e.latLng);
-}
-
-function handleCloseClick() {
-  // eslint-disable-next-line no-console
-  console.log('closeClick');
-}
+const singleRef = ref<InstanceType<typeof InfoWindow>>();
 </script>
 
 <template>
@@ -34,19 +24,13 @@ function handleCloseClick() {
       :key="item"
       :title="`I'm your ${item} marker!`"
       :position="createRandomCoordinate()"
-      @dblclick="handleClick"
     >
-      <InfoWindow open-event="mouseover" close-event="mouseout">
-        <div style="padding: 8px;">
-          {{ `I'm your ${item} infoWindow!` }}
-        </div>
-      </InfoWindow>
+      <InfoWindow open-event="mouseover" close-event="mouseout" />
     </Marker>
     <InfoWindow
       ref="singleRef"
       content="I'm single qq"
       :position="createRandomCoordinate()"
-      @closeclick="handleCloseClick"
     />
   </GoogleMap>
 </template>

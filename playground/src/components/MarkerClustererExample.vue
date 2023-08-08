@@ -7,7 +7,10 @@ import { createRandomCoordinate } from '../mock';
 const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
 
 const zoom = ref(12);
-const center = reactive<google.maps.LatLngLiteral>(createRandomCoordinate());
+const center = reactive<google.maps.LatLngLiteral>({
+  lat: 25.0855388,
+  lng: 121.4791004,
+});
 
 const algorithm = new GridAlgorithm({
   gridSize: 60,

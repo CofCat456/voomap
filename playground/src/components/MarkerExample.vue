@@ -7,6 +7,7 @@ const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
 
 const zoom = ref(12);
 const center = reactive<google.maps.LatLngLiteral>(createRandomCoordinate());
+const markerRef = ref<InstanceType<typeof Marker>>();
 
 function handleClick(e: google.maps.MapMouseEvent) {
   // eslint-disable-next-line no-console
@@ -25,6 +26,7 @@ function handleClick(e: google.maps.MapMouseEvent) {
   >
     <!-- <Marker v-for="key in 10" :key="key" :title="key.toString()" :position="createRandomCoordinate" /> -->
     <Marker
+      ref="markerRef"
       title="I'm your first marker!"
       :position="createRandomCoordinate()"
       :opacity="10"
