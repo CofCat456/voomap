@@ -1,3 +1,3 @@
-import InfoWindow from './src/InfoWindow.vue';
+import InfoWindow from './src/index.vue';
 
 export default InfoWindow;

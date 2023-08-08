@@ -1,3 +1,3 @@
-import GoogleMap from './src/GoogleMap.vue';
+import GoogleMap from './src/index.vue';
 
 export default GoogleMap;
