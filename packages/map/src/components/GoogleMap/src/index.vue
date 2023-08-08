@@ -184,7 +184,7 @@ onBeforeUnmount(() => {
 });
 
 defineExpose({
-  cMap: cofMap.cMap,
+  map: toRef(cofMap, 'cMap'),
 });
 </script>
 
