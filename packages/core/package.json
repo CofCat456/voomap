@@ -1,7 +1,7 @@
 {
   "name": "@voomap/core",
   "version": "0.0.1-beta.14",
-  "description": "Google Map with Vue3",
+  "description": "Google Maps with Composition API",
   "author": "CofCat <a25690756@gmail.com>",
   "license": "ISC",
   "funding": "https://github.com/CofCat456",

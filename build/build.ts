@@ -27,13 +27,14 @@ export default defineConfig({
       fileName: format => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue', /^@googlemaps.*/],
+      external: ['vue', /^@googlemaps.*/, '@types/google.maps'],
       output: {
         globals: {
           'vue': 'Vue',
           '@voomap/core': 'VoomapCore',
           '@googlemaps/markerclusterer': 'Markerclusterer',
           '@googlemaps/js-api-loader': 'JsApiLoader',
+          '@types/google.maps': 'GoogleMapsTypes',
         },
       },
     },

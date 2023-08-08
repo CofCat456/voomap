@@ -14,9 +14,6 @@ importers:
       '@types/fs-extra':
         specifier: ^11.0.1
         version: 11.0.1
-      '@types/google.maps':
-        specifier: ^3.53.6
-        version: 3.53.6
       '@types/node':
         specifier: ^20.4.8
         version: 20.4.8
@@ -93,6 +90,9 @@ importers:
         specifier: ^3.3.4
         version: 3.3.4
     devDependencies:
+      '@types/google.maps':
+        specifier: ^3.53.6
+        version: 3.53.6
       '@voomap/core':
         specifier: workspace:*
         version: link:../core

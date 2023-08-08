@@ -11,16 +11,15 @@
     "lint": "eslint './packages/**/*.{ts,vue}'",
     "lint:all": "eslint .",
     "lint:fix": "pnpm lint --fix",
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev docs --port 2222",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
+    "docs:preview": "vitepress preview docs --port 8080",
     "publish:ci": "esno scripts/publish.ts",
     "release": "bumpp -r && esno scripts/publish.ts"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.40.2",
     "@types/fs-extra": "^11.0.1",
-    "@types/google.maps": "^3.53.6",
     "@types/node": "^20.4.8",
     "@vitejs/plugin-vue": "^4.2.3",
     "bumpp": "^9.1.1",
