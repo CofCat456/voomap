@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@googlemaps/markerclusterer": "^2.4.0",
-    "@voomap/core": "workspace:0.0.1-beta.15"
+    "@voomap/core": "workspace:*"
   },
   "devDependencies": {
     "@types/google.maps": "^3.53.6"
