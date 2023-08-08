@@ -46,7 +46,9 @@ export const markerEvents = [
   'visible_changed',
   'zindex_changed',
   'rightclick',
-];
+] as const;
+
+export type MarkerEvent = typeof markerEvents;
 
 export const infoWindowEvents = [
   'closeclick',

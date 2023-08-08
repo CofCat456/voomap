@@ -24,4 +24,3 @@ export interface InfoWindowOptions {
 }
 
 export type InfoWindowOpenOptions = google.maps.InfoWindowOpenOptions;
-

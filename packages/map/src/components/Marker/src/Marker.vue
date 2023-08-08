@@ -60,7 +60,6 @@ const emit = defineEmits<{
   (e: 'rightclick'): void
 }>();
 
-// FIXME: emit type
 const marker = useMap('Marker', markerEvents, ref(props) as Ref<google.maps.MarkerOptions>, emit as any);
 
 provide(markerSymbol, marker);

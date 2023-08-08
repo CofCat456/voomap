@@ -48,7 +48,7 @@ function handleCloseClick() {
       :position="createRandomCoordinate()"
       @dblclick="handleClick"
     >
-      <InfoWindow>
+      <InfoWindow open-event="mouseover" close-event="mouseout">
         <div style="padding: 8px;">
           {{ `I'm your ${item} infoWindow!` }}
         </div>

@@ -2,9 +2,16 @@
 import { inject, markRaw, onBeforeMount, onMounted, ref, unref, useSlots, watch } from 'vue';
 import { apiSymbol, mapSymbol, markerSymbol } from '@/utlis/symbol';
 import type { InfoWindow, InfoWindowOpenOptions, InfoWindowOptions } from '@/types';
-import { infoWindowEvents } from '@/utlis/events';
+import { type MarkerEvent, infoWindowEvents } from '@/utlis/events';
 
-const props = defineProps<InfoWindowOptions>();
+interface Props extends InfoWindowOptions {
+  openEvent?: MarkerEvent[number]
+  closeEvent?: MarkerEvent[number]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  openEvent: 'click',
+});
 
 const emit = defineEmits<{
   (e: 'closeclick'): void
@@ -50,11 +57,15 @@ onMounted(() => {
           }),
         );
 
-        if (marker.value)
-          marker.value.addListener('click', open);
+        if (marker.value) {
+          if (props.openEvent)
+            marker.value.addListener(props.openEvent, open);
 
-        else
-          open();
+          if (props.closeEvent)
+            marker.value.addListener(props.closeEvent, close);
+        }
+
+        else { open(); }
 
         infoWindowEvents.forEach((event: any) => {
           infoWindow.value?.addListener(event, () => emit(event));
