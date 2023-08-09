@@ -4,9 +4,10 @@
   "private": true,
   "packageManager": "pnpm@8.6.11",
   "scripts": {
-    "build": "pnpm -r --filter=./packages/** run build",
+    "build": "pnpm --filter './packages/**' build",
     "build:map": "pnpm --filter @voomap/map build",
     "build:core": "pnpm --filter @voomap/core build",
+    "clean": "rimraf --glob dist types \"packages/*/dist\"",
     "lint": "eslint './packages/**/*.{ts,vue}'",
     "lint:all": "eslint .",
     "lint:fix": "pnpm lint --fix",

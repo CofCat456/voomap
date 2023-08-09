@@ -17,9 +17,10 @@
     "map",
     "google-map"
   ],
+  "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     }
@@ -37,7 +38,7 @@
     "build": "vite build --config ../../build/build.ts"
   },
   "peerDependencies": {
-    "vue": ">=3.3.0"
+    "vue": "^3.0.0"
   },
   "dependencies": {
     "@googlemaps/markerclusterer": "^2.4.0",

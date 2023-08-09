@@ -1,9 +1,18 @@
 import { execSync as exec } from 'node:child_process';
-
 import path, { resolve } from 'node:path';
-import { copyFileSync } from 'fs-extra';
+import { consola } from 'consola';
+import { copyFileSync, readJsonSync, removeSync } from 'fs-extra';
 
+consola.info('Clean up');
+exec('pnpm run clean', { stdio: 'inherit' });
+
+consola.info('Vite Build');
 exec('pnpm build', { stdio: 'inherit' });
+
+const { name, version } = readJsonSync(
+  path.resolve(__dirname, '../package.json'),
+  'utf-8',
+);
 
 const command = 'pnpm -r publish --access public --no-git-checks';
 
@@ -15,3 +24,7 @@ copyFileSync(readmePath, mapReadmePath);
 copyFileSync(readmePath, coreReadmePath);
 
 exec(`${command}`, { stdio: 'inherit' });
+
+removeSync(mapReadmePath);
+removeSync(coreReadmePath);
+consola.success(`Published ${name} v${version}`);
