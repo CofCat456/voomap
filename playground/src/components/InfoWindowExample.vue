@@ -25,7 +25,11 @@ const singleRef = ref<InstanceType<typeof InfoWindow>>();
       :title="`I'm your ${item} marker!`"
       :position="createRandomCoordinate()"
     >
-      <InfoWindow open-event="mouseover" close-event="mouseout" />
+      <InfoWindow
+        open-event="mouseover"
+        close-event="mouseout"
+        initial-state
+      />
     </Marker>
     <InfoWindow
       ref="singleRef"

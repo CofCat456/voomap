@@ -5,6 +5,7 @@ import type { InfoWindow, InfoWindowOpenOptions, InfoWindowOptions } from '@/typ
 import { type MarkerEvent, infoWindowEvents } from '@/utlis/events';
 
 interface Props extends InfoWindowOptions {
+  initialState?: boolean
   openEvent?: MarkerEvent[number]
   closeEvent?: MarkerEvent[number]
 }
@@ -35,7 +36,9 @@ function open(opts?: InfoWindowOpenOptions) {
   return infoWindow.value?.open({ map: map.value, anchor: marker.value, ...opts });
 }
 
-const close = () => infoWindow.value?.close();
+function close() {
+  infoWindow.value?.close();
+}
 
 onMounted(() => {
   watch(map, () => {
@@ -45,9 +48,6 @@ onMounted(() => {
           ...unref(props),
           content: hasSlotDefault ? infoWindowRef.value : props.content ? props.content : marker.value ? marker.value.getTitle() : '',
         });
-
-        if (!marker.value)
-          open();
       }
       else {
         infoWindow.value = markRaw(
@@ -65,7 +65,8 @@ onMounted(() => {
             marker.value.addListener(props.closeEvent, close);
         }
 
-        else { open(); }
+        if (!marker.value || props.initialState)
+          open();
 
         infoWindowEvents.forEach((event: any) => {
           infoWindow.value?.addListener(event, () => emit(event));

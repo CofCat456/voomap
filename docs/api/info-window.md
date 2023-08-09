@@ -62,6 +62,13 @@ const center = reactive<google.maps.LatLngLiteral>({
  
 ## Params
 
+### initialState
+
+This is initial state of the infoWinfow(open or close).
+
+- Type `boolean`
+- Default `false`
+
 ### openEvent
 
 When used in conjunction with `Marker`, the event for opening the window.
@@ -382,6 +389,26 @@ function handleCloseClick() {
   </GoogleMap>
 </template>
 ```
+
+### open
+
+Opens this `InfoWindow` on the map.
+
+- Type
+
+  ```ts
+  function open(opts?: InfoWindowOpenOptions): void | undefined
+  ```
+
+### close
+
+Closes this `InfoWindow` on the map.
+
+- Type
+
+  ```ts
+  function close(): void
+  ```
 
 ## Automatic updates
 
