@@ -9,7 +9,7 @@ The following code excerpt demonstrates a basic usage example:
 ```vue
 <script setup lang="ts">
 import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -36,7 +36,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 ```vue
 <script setup lang="ts">
 import { GoogleMap, InfoWindow, Marker } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -167,14 +167,14 @@ If used independently with `InfoWindow`, it defaults to being **open**.
 
     ```ts
     interface InfoWindowOptions {
-      ariaLabel?: string;
-      content?: string | Element | Text;
-      disableAutoPan?: boolean;
-      maxWidth?: number;
-      minWidth?: number;
-      pixelOffset?: Size;
-      position?: LatLng | LatLngLiteral | null;
-      zIndex?: number;
+      ariaLabel?: string
+      content?: string | Element | Text
+      disableAutoPan?: boolean
+      maxWidth?: number
+      minWidth?: number
+      pixelOffset?: Size
+      position?: LatLng | LatLngLiteral | null
+      zIndex?: number
     }
     ```
 
@@ -185,7 +185,7 @@ If used independently with `InfoWindow`, it defaults to being **open**.
 ```vue
 <script setup lang="ts">
 import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -220,16 +220,12 @@ Content of the `InfoWindow`.
 ```vue
 <script setup lang="ts">
 import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
   lng: 121.4791004
 });
-
-function handleCloseClick() {
-  console.log('close');
-}
 </script>
 
 <template>
@@ -241,25 +237,20 @@ function handleCloseClick() {
     <InfoWindow
       content="I'm single qq"
       :position="center"
-      @closeclick="handleCloseClick"
     />
   </GoogleMap>
 </template>
 ```
-2. Element Content
+2. Element
 ```vue
 <script setup lang="ts">
 import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
   lng: 121.4791004
 });
-
-function handleCloseClick() {
-  console.log('close');
-}
 </script>
 
 <template>
@@ -270,10 +261,9 @@ function handleCloseClick() {
   >
     <InfoWindow
       :position="center"
-      @closeclick="handleCloseClick"
     >
       <div style="padding: 8px;">
-        I'm single qq
+        I'm element
       </div>
     </InfoWindow>
   </GoogleMap>
@@ -283,7 +273,7 @@ function handleCloseClick() {
 ```vue
 <script setup lang="ts">
 import { GoogleMap, InfoWindow, Marker } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -301,7 +291,10 @@ const center = reactive<google.maps.LatLngLiteral>({
       title="I'm your first marker!"
       :position="center"
     >
-      <InfoWindow />
+      <InfoWindow
+        open-event="mouseover"
+        close-event="mouseout"
+      />
     </Marker>
   </GoogleMap>
 </template>
@@ -320,7 +313,7 @@ The `InfoWindow` supports event listeners for all native events. You can find de
 ```vue
 <script setup lang="ts">
 import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -370,7 +363,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 });
 
 function handleCloseClick() {
-  console.log(infoWindowRef.value.infoWindow.getContent())
+  console.log(infoWindowRef.value.infoWindow.getContent());
 }
 </script>
 
@@ -384,6 +377,7 @@ function handleCloseClick() {
       ref="infoWindowRef"
       content="I'm single qq"
       :position="center"
+      @closeclick="handleCloseClick"
     />
   </GoogleMap>
 </template>

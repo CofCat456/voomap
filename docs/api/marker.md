@@ -1,6 +1,7 @@
 # Marker
 
 Use the `Marker` to place markers on the map.
+
 ## Usage
 
 The following code excerpt demonstrates a basic usage example:
@@ -8,7 +9,7 @@ The following code excerpt demonstrates a basic usage example:
 ```vue
 <script setup lang="ts">
 import { GoogleMap, Marker } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -67,7 +68,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 ```vue
 <script setup lang="ts">
 import { GoogleMap, Marker } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -81,9 +82,9 @@ const center = reactive<google.maps.LatLngLiteral>({
     :center="center"
     :zoom="11"
   >
-    <Marker 
+    <Marker
       title="I'm your first marker!"
-      :draggable: true
+      draggable
       :position="center"
     />
   </GoogleMap>
@@ -102,7 +103,7 @@ The `Marker` supports event listeners for all native events. You can find detail
 ```vue
 <script setup lang="ts">
 import { GoogleMap, Marker } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -120,9 +121,9 @@ function handleClick(e: google.maps.MapMouseEvent) {
     :center="center"
     :zoom="11"
   >
-    <Marker 
+    <Marker
       title="I'm your first marker!"
-      :draggable: true
+      draggable
       :position="center"
       @dblclick="handleClick"
     />
@@ -145,10 +146,10 @@ If you want to further manipulate the `Marker`, you can use the public instance 
 import { GoogleMap, Marker } from '@voomap/map';
 import { reactive, ref } from 'vue';
 
-const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
-
-const zoom = ref(12);
-const center = reactive<google.maps.LatLngLiteral>(createRandomCoordinate());
+const center = reactive<google.maps.LatLngLiteral>({
+  lat: 25.0855388,
+  lng: 121.4791004
+});
 const markerRef = ref<InstanceType<typeof Marker>>();
 
 function handleClick() {
@@ -165,7 +166,7 @@ function handleClick() {
     <Marker
       ref="markerRef"
       title="I'm your first marker!"
-      :draggable: true
+      draggable
       :position="center"
       @dblclick="handleClick"
     />

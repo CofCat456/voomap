@@ -2,7 +2,7 @@
 
 Using the `MarkerClusterer` allows you to display a large number of markers on the map.
 
-> The `MarkerClusterer` is implemented through `@googlemaps/js-markerclusterer.` You can refer to their [documentation](https://googlemaps.github.io/js-markerclusterer/#md:description) for instructions on how to use it.
+> The `MarkerClusterer` is implemented through `@googlemaps/js-markerclusterer` You can refer to their [documentation](https://googlemaps.github.io/js-markerclusterer/#md:description) for instructions on how to use it.
 
 ## Usage
 
@@ -11,11 +11,8 @@ The following code excerpt demonstrates a basic usage example:
 ```vue
 <script setup lang="ts">
 import { GoogleMap, Marker, MarkerClusterer } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
-const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
-
-const zoom = ref(12);
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
   lng: 121.4791004,
@@ -50,6 +47,51 @@ import options from `@googlemaps/js-markerclusterer`.
  import type { MarkerClustererOptions } from '@googlemaps/markerclusterer';
   ```
 
+- Example
+
+```vue
+<script setup lang="ts">
+import { GoogleMap, Marker, MarkerClusterer } from '@voomap/map';
+import { GridAlgorithm } from '@googlemaps/markerclusterer';
+import { reactive } from 'vue';
+
+const center = reactive<google.maps.LatLngLiteral>({
+  lat: 25.0855388,
+  lng: 121.4791004,
+});
+
+const algorithm = new GridAlgorithm({
+  gridSize: 60
+});
+
+function createRandomCoordinate() {
+  const randomLat = 22 + Math.random() * 3;
+  const randomLng = 120.5 + Math.random();
+
+  const lat = Number.parseFloat(randomLat.toFixed(6));
+  const lng = Number.parseFloat(randomLng.toFixed(6));
+
+  return { lat, lng };
+}
+</script>
+
+<template>
+  <GoogleMap
+    :api-key="YOUR_GOOGLE_MAPS_API_KEY"
+    :center="center"
+    :zoom="11"
+  >
+    <MarkerClusterer :algorithm="algorithm">
+      <Marker
+        v-for="marker in 100"
+        :key="marker"
+        :position="createRandomCoordinate()"
+      />
+    </MarkerClusterer>
+  </GoogleMap>
+</template>
+```
+
 ## Events
 
 import events from `@googlemaps/js-markerclusterer`.
@@ -59,11 +101,8 @@ import events from `@googlemaps/js-markerclusterer`.
 ```vue
 <script setup lang="ts">
 import { GoogleMap, Marker, MarkerClusterer } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
-const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
-
-const zoom = ref(12);
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
   lng: 121.4791004,

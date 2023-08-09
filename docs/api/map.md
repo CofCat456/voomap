@@ -9,7 +9,7 @@ The following code excerpt demonstrates a basic usage example:
 ```vue
 <script setup lang="ts">
 import { GoogleMap } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -106,8 +106,7 @@ Currently, the coordinates for Taiwan are hardcoded, and in the future, we may c
 ```vue
 <script setup lang="ts">
 import { GoogleMap } from '@voomap/map';
-import { reactive, ref } from 'vue';
-import { createRandomCoordinate } from '../mock';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -138,8 +137,7 @@ The `Map` supports event listeners for all native events. You can find detailed 
 ```vue
 <script setup lang="ts">
 import { GoogleMap } from '@voomap/map';
-import { reactive, ref } from 'vue';
-import { createRandomCoordinate } from '../mock';
+import { reactive } from 'vue';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -178,7 +176,6 @@ If you want to further manipulate the `Map`, you can use the public instance of 
 <script setup lang="ts">
 import { GoogleMap } from '@voomap/map';
 import { reactive, ref } from 'vue';
-import { createRandomCoordinate } from '../mock';
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -200,6 +197,7 @@ function handleClick() {
     :zoom="11"
     :max-zoom="20"
     :min-zoom="10"
+    @click="handleClick"
   />
 </template>
 ```
