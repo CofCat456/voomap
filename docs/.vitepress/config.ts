@@ -33,7 +33,7 @@ export default defineConfig({
   description: 'Easy use of Google Maps with Composition API',
 
   head: [
-    ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/voomap.ico', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'CofCat' }],
     ['meta', { property: 'og:title', content: 'Voomap' }],
     ['meta', { property: 'og:description', content: 'Easy use of Google Maps with Composition API' }],

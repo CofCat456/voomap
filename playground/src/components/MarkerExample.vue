@@ -28,8 +28,10 @@ function handleClick(e: google.maps.MapMouseEvent) {
     <Marker
       ref="markerRef"
       title="I'm your first marker!"
-      :position="createRandomCoordinate()"
+      icon="/vue.png"
+      draggable
       :opacity="10"
+      :position="createRandomCoordinate()"
       @dblclick="handleClick"
     />
   </GoogleMap>
