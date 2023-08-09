@@ -38,7 +38,7 @@
     "build": "vite build --config ../../build/build.ts"
   },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": "^3.3.0"
   },
   "dependencies": {
     "@googlemaps/markerclusterer": "^2.4.0",
