@@ -35,7 +35,7 @@
   "scripts": {
     "dev": "pnpm build:rollup -w",
     "clean": "rimraf dist",
-    "build": "vite build --config ../../build/build.ts"
+    "build": "vite build --config ../../scripts/build.ts"
   },
   "peerDependencies": {
     "vue": "^3.3.0"

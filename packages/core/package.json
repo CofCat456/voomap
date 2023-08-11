@@ -35,7 +35,7 @@
   "scripts": {
     "dev": "pnpm build:rollup -w",
     "clean": "rimraf dist",
-    "build": "vite build --config ../../build/build-core.ts"
+    "build": "vite build --config ../../scripts/build-core.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.2"
