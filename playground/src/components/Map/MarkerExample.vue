@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { GoogleMap, Marker } from '@voomap/map';
 import { reactive, ref } from 'vue';
-import { createRandomCoordinate } from '../mock';
+import { createRandomCoordinate } from '../../mock';
 
 const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
 
@@ -28,7 +28,6 @@ function handleClick(e: google.maps.MapMouseEvent) {
     <Marker
       ref="markerRef"
       title="I'm your first marker!"
-      icon="/vue.png"
       draggable
       :opacity="10"
       :position="createRandomCoordinate()"
