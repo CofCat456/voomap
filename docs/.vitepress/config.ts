@@ -7,7 +7,14 @@ const guide = [
   },
 ];
 
-const api = [
+const core = [
+  {
+    text: 'useSearch',
+    link: '/core/useSearch',
+  },
+];
+
+const map = [
   {
     text: 'Map',
     link: '/api/map',
@@ -52,8 +59,12 @@ export default defineConfig({
         items: guide,
       },
       {
+        text: 'Core',
+        items: core,
+      },
+      {
         text: 'Google Maps',
-        items: api,
+        items: map,
       },
     ],
 
