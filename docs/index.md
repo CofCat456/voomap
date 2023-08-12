@@ -22,4 +22,3 @@ features:
   - title: Additional Features
     details: In addition to Google Maps, the core package will also provide functions for querying locations, retrieving map coordinates, calculating distances, and more in the future
 ---
-
