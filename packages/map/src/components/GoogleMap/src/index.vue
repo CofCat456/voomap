@@ -5,7 +5,23 @@ import { apiSymbol, mapSymbol } from '@/utlis/symbol';
 import { taiwanRestriction } from '@/utlis/mapUtlis';
 import { hasChanged, transformCenter } from '@/utlis';
 import { mapEvents } from '@/utlis/events';
-import type { FullscreenControlOptions, IconMouseEvent, LatLng, LatLngLiteral, Map, MapMouseEvent, MapRestriction, MapTypeControlOptions, MapTypeStyle, PanControlOptions, RotateControlOptions, ScaleControlOptions, StreetViewControlOptions, StreetViewPanorama, ZoomControlOptions } from '@/types';
+import type {
+  FullscreenControlOptions,
+  IconMouseEvent,
+  LatLng,
+  LatLngLiteral,
+  Map,
+  MapMouseEvent,
+  MapRestriction,
+  MapTypeControlOptions,
+  MapTypeStyle,
+  PanControlOptions,
+  RotateControlOptions,
+  ScaleControlOptions,
+  StreetViewControlOptions,
+  StreetViewPanorama,
+  ZoomControlOptions,
+} from '@/types';
 
 interface CofMap {
   cGoogle: typeof google | undefined
@@ -196,6 +212,7 @@ defineExpose({
 </template>
 
 <style scoped>
+/* FIXME: error css */
 .map-container,
 #map {
   width: 100%;

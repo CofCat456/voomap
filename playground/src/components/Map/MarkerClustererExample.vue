@@ -2,7 +2,7 @@
 import { GoogleMap, Marker, MarkerClusterer } from '@voomap/map';
 import { reactive, ref } from 'vue';
 import { GridAlgorithm } from '@googlemaps/markerclusterer';
-import { createRandomCoordinate } from '../mock';
+import { createRandomCoordinate } from '../../mock';
 
 const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
 

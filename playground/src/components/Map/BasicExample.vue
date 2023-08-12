@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { GoogleMap } from '@voomap/map';
 import { reactive, ref } from 'vue';
-import { createRandomCoordinate } from '../mock';
+import { createRandomCoordinate } from '../../mock';
 
 const { VITE_GOOGLE_MAP_API_KEY } = import.meta.env;
 

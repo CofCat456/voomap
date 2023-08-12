@@ -7,6 +7,7 @@ Voomap is entirely written in [TypeScript with Composition API](https://vuejs.or
 ```bash
 npm install --save @voomap/map
 ```
+
 > Voomap requires vue >= v3.3
 
 ## Apply for a Google Maps API
@@ -19,8 +20,8 @@ Please remember to definitely apply for an `API`, this is the most crucial step.
 
 ```vue
 <script setup lang="ts">
-import { GoogleMap } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,

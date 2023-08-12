@@ -8,8 +8,8 @@ The following code excerpt demonstrates a basic usage example:
 
 ```vue
 <script setup lang="ts">
-import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap, InfoWindow } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -35,8 +35,8 @@ const center = reactive<google.maps.LatLngLiteral>({
 
 ```vue
 <script setup lang="ts">
-import { GoogleMap, InfoWindow, Marker } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap, InfoWindow, Marker } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -59,7 +59,7 @@ const center = reactive<google.maps.LatLngLiteral>({
   </GoogleMap>
 </template>
 ```
- 
+
 ## Params
 
 ### initialState
@@ -80,34 +80,34 @@ When used in conjunction with `Marker`, the event for opening the window.
       Show Type Detail
     </summary>
 
-    ```ts
-    const markerEvents = [
-      'animation_changed',
-      'click',
-      'clickable_changed',
-      'contextmenu',
-      'cursor_changed',
-      'dblclick',
-      'drag',
-      'dragend',
-      'draggable_changed',
-      'dragstart',
-      'flat_changed',
-      'icon_changed',
-      'mousedown',
-      'mouseout',
-      'mouseover',
-      'mouseup',
-      'position_changed',
-      'shape_changed',
-      'title_changed',
-      'visible_changed',
-      'zindex_changed',
-      'rightclick',
-    ] as const;
+  ```ts
+  const markerEvents = [
+    "animation_changed",
+    "click",
+    "clickable_changed",
+    "contextmenu",
+    "cursor_changed",
+    "dblclick",
+    "drag",
+    "dragend",
+    "draggable_changed",
+    "dragstart",
+    "flat_changed",
+    "icon_changed",
+    "mousedown",
+    "mouseout",
+    "mouseover",
+    "mouseup",
+    "position_changed",
+    "shape_changed",
+    "title_changed",
+    "visible_changed",
+    "zindex_changed",
+    "rightclick"
+  ] as const;
 
-    type MarkerEvent = typeof markerEvents;
-    ```
+  type MarkerEvent = typeof markerEvents;
+  ```
 
   </details>
 
@@ -124,34 +124,34 @@ When used in conjunction with `Marker`, the event for closing the window.
       Show Type Detail
     </summary>
 
-    ```ts
-    const markerEvents = [
-      'animation_changed',
-      'click',
-      'clickable_changed',
-      'contextmenu',
-      'cursor_changed',
-      'dblclick',
-      'drag',
-      'dragend',
-      'draggable_changed',
-      'dragstart',
-      'flat_changed',
-      'icon_changed',
-      'mousedown',
-      'mouseout',
-      'mouseover',
-      'mouseup',
-      'position_changed',
-      'shape_changed',
-      'title_changed',
-      'visible_changed',
-      'zindex_changed',
-      'rightclick',
-    ] as const;
+  ```ts
+  const markerEvents = [
+    "animation_changed",
+    "click",
+    "clickable_changed",
+    "contextmenu",
+    "cursor_changed",
+    "dblclick",
+    "drag",
+    "dragend",
+    "draggable_changed",
+    "dragstart",
+    "flat_changed",
+    "icon_changed",
+    "mousedown",
+    "mouseout",
+    "mouseover",
+    "mouseup",
+    "position_changed",
+    "shape_changed",
+    "title_changed",
+    "visible_changed",
+    "zindex_changed",
+    "rightclick"
+  ] as const;
 
-    type MarkerEvent = typeof markerEvents;
-    ```
+  type MarkerEvent = typeof markerEvents;
+  ```
 
   </details>
 
@@ -172,18 +172,18 @@ If used independently with `InfoWindow`, it defaults to being **open**.
       Show Type Detail
     </summary>
 
-    ```ts
-    interface InfoWindowOptions {
-      ariaLabel?: string
-      content?: string | Element | Text
-      disableAutoPan?: boolean
-      maxWidth?: number
-      minWidth?: number
-      pixelOffset?: Size
-      position?: LatLng | LatLngLiteral | null
-      zIndex?: number
-    }
-    ```
+  ```ts
+  interface InfoWindowOptions {
+    ariaLabel?: string;
+    content?: string | Element | Text;
+    disableAutoPan?: boolean;
+    maxWidth?: number;
+    minWidth?: number;
+    pixelOffset?: Size;
+    position?: LatLng | LatLngLiteral | null;
+    zIndex?: number;
+  }
+  ```
 
   </details>
 
@@ -191,8 +191,8 @@ If used independently with `InfoWindow`, it defaults to being **open**.
 
 ```vue
 <script setup lang="ts">
-import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap, InfoWindow } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -213,6 +213,7 @@ const center = reactive<google.maps.LatLngLiteral>({
   </GoogleMap>
 </template>
 ```
+
 ::: warning Important
 When passing in `InfoWindowOptions`, please avoid directly passing in an `Object`. Instead, use [v-bind](https://vuejs.org/guide/components/props.html#prop-passing-details).
 :::
@@ -224,10 +225,11 @@ Content of the `InfoWindow`.
 - Type `string | Element | Text`
 
 1. String
+
 ```vue
 <script setup lang="ts">
-import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap, InfoWindow } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -248,11 +250,13 @@ const center = reactive<google.maps.LatLngLiteral>({
   </GoogleMap>
 </template>
 ```
+
 2. Element
+
 ```vue
 <script setup lang="ts">
-import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap, InfoWindow } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -266,21 +270,19 @@ const center = reactive<google.maps.LatLngLiteral>({
     :center="center"
     :zoom="12"
   >
-    <InfoWindow
-      :position="center"
-    >
-      <div style="padding: 8px;">
-        I'm element
-      </div>
+    <InfoWindow :position="center">
+      <div style="padding: 8px;">I'm element</div>
     </InfoWindow>
   </GoogleMap>
 </template>
 ```
+
 3. Default
+
 ```vue
 <script setup lang="ts">
-import { GoogleMap, InfoWindow, Marker } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap, InfoWindow, Marker } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -319,8 +321,8 @@ The `InfoWindow` supports event listeners for all native events. You can find de
 
 ```vue
 <script setup lang="ts">
-import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap, InfoWindow } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -328,7 +330,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 });
 
 function handleCloseClick() {
-  console.log('close');
+  console.log("close");
 }
 </script>
 
@@ -359,8 +361,8 @@ If you want to further manipulate the `InfoWindow`, you can use the public insta
 
 ```vue
 <script setup lang="ts">
-import { GoogleMap, InfoWindow } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { GoogleMap, InfoWindow } from "@voomap/map";
+import { reactive, ref } from "vue";
 
 const infoWindowRef = ref<InstanceType<typeof InfoWindow>>();
 
@@ -397,7 +399,7 @@ Opens this `InfoWindow` on the map.
 - Type
 
   ```ts
-  function open(opts?: InfoWindowOpenOptions): void | undefined
+  function open(opts?: InfoWindowOpenOptions): void | undefined;
   ```
 
 ### close
@@ -407,7 +409,7 @@ Closes this `InfoWindow` on the map.
 - Type
 
   ```ts
-  function close(): void
+  function close(): void;
   ```
 
 ## Automatic updates

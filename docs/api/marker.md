@@ -8,8 +8,8 @@ The following code excerpt demonstrates a basic usage example:
 
 ```vue
 <script setup lang="ts">
-import { GoogleMap, Marker } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap, Marker } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -27,6 +27,7 @@ const center = reactive<google.maps.LatLngLiteral>({
   </GoogleMap>
 </template>
 ```
+
 ## Params
 
 ### MarkerOptions
@@ -40,26 +41,26 @@ const center = reactive<google.maps.LatLngLiteral>({
       Show Type Detail
     </summary>
 
-    ```ts
-    interface MarkerOptions {
-      anchorPoint?: Point
-      animation?: Animation
-      clickable?: boolean
-      collisionBehavior?: string
-      crossOnDrag?: boolean
-      cursor?: string
-      draggable?: boolean
-      icon?: string | Icon | null | symbol
-      label?: string | MarkerLabel
-      opacity?: number
-      optimized?: boolean
-      position?: LatLng | null | LatLngLiteral
-      shape?: MarkerShape
-      title?: string
-      visible?: boolean
-      zIndex?: number
-    }
-    ```
+  ```ts
+  interface MarkerOptions {
+    anchorPoint?: Point;
+    animation?: Animation;
+    clickable?: boolean;
+    collisionBehavior?: string;
+    crossOnDrag?: boolean;
+    cursor?: string;
+    draggable?: boolean;
+    icon?: string | Icon | null | symbol;
+    label?: string | MarkerLabel;
+    opacity?: number;
+    optimized?: boolean;
+    position?: LatLng | null | LatLngLiteral;
+    shape?: MarkerShape;
+    title?: string;
+    visible?: boolean;
+    zIndex?: number;
+  }
+  ```
 
   </details>
 
@@ -67,8 +68,8 @@ const center = reactive<google.maps.LatLngLiteral>({
 
 ```vue
 <script setup lang="ts">
-import { GoogleMap, Marker } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap, Marker } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -90,6 +91,7 @@ const center = reactive<google.maps.LatLngLiteral>({
   </GoogleMap>
 </template>
 ```
+
 ::: warning Important
 When passing in `MarkerOptions`, please avoid directly passing in an `Object`. Instead, use [v-bind](https://vuejs.org/guide/components/props.html#prop-passing-details).
 :::
@@ -102,8 +104,8 @@ The `Marker` supports event listeners for all native events. You can find detail
 
 ```vue
 <script setup lang="ts">
-import { GoogleMap, Marker } from '@voomap/map';
-import { reactive } from 'vue';
+import { GoogleMap, Marker } from "@voomap/map";
+import { reactive } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,
@@ -111,7 +113,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 });
 
 function handleClick(e: google.maps.MapMouseEvent) {
-  console.log('click', e.latLng);
+  console.log("click", e.latLng);
 }
 </script>
 
@@ -143,8 +145,8 @@ If you want to further manipulate the `Marker`, you can use the public instance 
 
 ```vue
 <script setup lang="ts">
-import { GoogleMap, Marker } from '@voomap/map';
-import { reactive, ref } from 'vue';
+import { GoogleMap, Marker } from "@voomap/map";
+import { reactive, ref } from "vue";
 
 const center = reactive<google.maps.LatLngLiteral>({
   lat: 25.0855388,

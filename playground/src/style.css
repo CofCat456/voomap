@@ -19,6 +19,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -51,13 +52,13 @@ button {
   color: #00c9ff;
   background-color: #202023;
   box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, .3);
-  transition-property: color,background-color,border-color,text-decoration-color,fill,stroke;
-  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
   transition-duration: .3s;
 }
+
 button:hover {
-  color: #00c9ffff
-;
+  color: #00c9ffff;
 }
 
 .card {
@@ -67,6 +68,7 @@ button:hover {
 #app {
   width: 100vw;
   height: 100vh;
+  padding: 1rem;
 }
 
 @media (prefers-color-scheme: light) {
@@ -74,9 +76,11 @@ button:hover {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
