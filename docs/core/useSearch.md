@@ -14,7 +14,7 @@ const { isLoading, coordinates, getCoordinates } = useSearch(YOUR_GOOGLE_MAPS_AP
 <template>
   <input
     type="text"
-    @blur="(value) => getCoordinates"
+    @blur="(e) => getCoordinates(e.target.value)"
   />
   You will get Coordinates : {{ coordinates }}
 </template>
