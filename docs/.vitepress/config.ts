@@ -40,13 +40,15 @@ export default defineConfig({
   description: 'Easy use of Google Maps with Composition API',
 
   head: [
-    ['link', { rel: 'icon', href: '/voomap.ico', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/voomap.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'CofCat' }],
     ['meta', { property: 'og:title', content: 'Voomap' }],
     ['meta', { property: 'og:description', content: 'Easy use of Google Maps with Composition API' }],
   ],
 
   themeConfig: {
+    logo: '/voomap.svg',
+
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Get Started', link: '/guide/', activeMatch: '/guide/' },

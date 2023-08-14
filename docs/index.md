@@ -6,6 +6,9 @@ hero:
   name: "Voomap"
   text: "Google Maps with Composition API"
   tagline: Quick and easy to get started
+  image:
+    src: /voomap.svg
+    alt: Voomap
   actions:
     - theme: brand
       text: Get Started
