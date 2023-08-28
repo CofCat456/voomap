@@ -100,3 +100,9 @@ defineExpose({
     </div>
   </div>
 </template>
+
+<style scoped>
+.info-window-container {
+  display: none;
+}
+</style>
