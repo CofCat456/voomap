@@ -2,6 +2,8 @@
 
 By inputting a location, you will obtain the coordinates of that address.
 
+> Before using this feature, you must enable the `Geocoding API`
+
 ## Usage
 
 ```vue
@@ -19,3 +21,13 @@ const { isLoading, coordinates, getCoordinates } = useSearch(YOUR_GOOGLE_MAPS_AP
   You will get Coordinates : {{ coordinates }}
 </template>
 ```
+## Params
+
+### apiKey (Required)
+
+- Type `string`
+- Default: `undefined`
+
+::: warning Important
+Please remember to enable the `Geocoding API`
+:::

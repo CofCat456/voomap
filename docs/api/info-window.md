@@ -19,7 +19,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 
 <template>
   <GoogleMap
-    :api-key="VITE_GOOGLE_MAP_API_KEY"
+    :api-key="YOUR_GOOGLE_MAPS_API_KEY"
     :center="center"
     :zoom="12"
   >
@@ -46,7 +46,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 
 <template>
   <GoogleMap
-    :api-key="VITE_GOOGLE_MAP_API_KEY"
+    :api-key="YOUR_GOOGLE_MAPS_API_KEY"
     :center="center"
     :zoom="12"
   >
@@ -157,7 +157,7 @@ When used in conjunction with `Marker`, the event for closing the window.
 
 - Default `undefined`
 
-:::info
+::: info
 If used independently with `InfoWindow`, it defaults to being **open**.
 :::
 
@@ -309,7 +309,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 </template>
 ```
 
-:::info
+::: info
 When `InfoWindow` is used in conjunction with `Marker`, if content is not provided, the default value is set to the **Marker Title**.
 :::
 

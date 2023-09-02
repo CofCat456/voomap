@@ -19,7 +19,7 @@ const center = reactive<google.maps.LatLngLiteral>({
 
 <template>
   <GoogleMap
-    :api-key="VITE_GOOGLE_MAP_API_KEY"
+    :api-key="YOUR_GOOGLE_MAPS_API_KEY"
     :center="center"
     :zoom="11"
   >

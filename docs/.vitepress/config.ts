@@ -31,6 +31,10 @@ const map = [
     text: 'MarkerClusterer',
     link: '/api/marker-clusterer',
   },
+  {
+    text: 'Embed',
+    link: '/api/embed',
+  },
 ];
 
 // https://vitepress.dev/reference/site-config

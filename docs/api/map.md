@@ -42,7 +42,7 @@ Limit the map scope of Google Maps. Once this feature is enabled, you will be un
 - Type `boolean`
 - Default `false`
 
-:::info
+::: info
 Currently, the coordinates for Taiwan are hardcoded, and in the future, we may consider incorporating a national database or expanding access to additional regions.
 :::
 

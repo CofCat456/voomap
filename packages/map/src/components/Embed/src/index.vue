@@ -48,6 +48,7 @@ const getUrl = computed(() => {
   <iframe
     frameborder="0"
     referrerpolicy="no-referrer-when-downgrade"
+    loading="lazy"
     :allowfullscreen="allowfullscreen"
     :src="getUrl"
     :width="width"
