@@ -50,6 +50,19 @@ export default defineConfig({
     ['meta', { property: 'og:description', content: 'Easy use of Google Maps with Composition API' }],
   ],
 
+  markdown: {
+    theme: {
+      light: 'vitesse-light',
+      dark: 'vitesse-dark',
+    },
+    config(md) {
+      // https://github.com/markdown-it/markdown-it/issues/878
+      md.linkify.set({
+        fuzzyLink: false,
+      });
+    },
+  },
+
   themeConfig: {
     logo: '/voomap.svg',
 
