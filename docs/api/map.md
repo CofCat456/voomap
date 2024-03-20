@@ -97,6 +97,7 @@ Currently, the coordinates for Taiwan are hardcoded, and in the future, we may c
     zoom?: number;
     zoomControl?: boolean;
     zoomControlOptions?: ZoomControlOptions;
+    language?: string
   }
   ```
 
@@ -122,6 +123,7 @@ const center = reactive<google.maps.LatLngLiteral>({
     :zoom="11"
     :max-zoom="20"
     :min-zoom="10"
+    language="zh-TW
   />
 </template>
 ```

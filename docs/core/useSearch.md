@@ -31,3 +31,10 @@ const { isLoading, coordinates, getCoordinates } = useSearch(YOUR_GOOGLE_MAPS_AP
 ::: warning Important
 Please remember to enable the `Geocoding API`
 :::
+
+### language
+
+[list of supported languages](https://developers.google.com/maps/faq#languagesupport)
+
+- Type `string`
+- Default: `en`

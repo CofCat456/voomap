@@ -69,6 +69,7 @@ interface MapOptions {
   zoom?: number
   zoomControl?: boolean
   zoomControlOptions?: ZoomControlOptions
+  language?: string
 }
 
 interface Props extends MapOptions {
@@ -89,6 +90,7 @@ const props = withDefaults(defineProps<Props>(), {
   scrollwheel: true,
   zoom: 11,
   zoomControl: true,
+  language: 'en',
 });
 
 const emit = defineEmits<{
@@ -160,7 +162,7 @@ const getMapOption = computed<MapOptions>(() => {
 });
 
 async function initMap() {
-  const { loader } = useMap(props.apiKey);
+  const { loader } = useMap(props.apiKey, props.language);
   cofMap.cGoogle = markRaw(await loader.load());
   cofMap.cApi = markRaw(cofMap.cGoogle.maps);
 

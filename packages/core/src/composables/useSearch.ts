@@ -2,7 +2,7 @@ import type { Ref } from 'vue';
 import { markRaw, onMounted, reactive, ref, toValue } from 'vue';
 import { useMap } from './useMap';
 
-export function useSearch(apiKey: string) {
+export function useSearch(apiKey: string, language: string = 'en') {
   const isLoading = ref(false);
   const cGoogle = ref<typeof google>();
   const cApi = ref<typeof google.maps>();
@@ -59,7 +59,7 @@ export function useSearch(apiKey: string) {
   };
 
   onMounted(async () => {
-    const { loader } = useMap(apiKey);
+    const { loader } = useMap(apiKey, language);
     cGoogle.value = markRaw(await loader.load());
     cApi.value = markRaw(cGoogle.value.maps);
     cGeocoder.value = markRaw(new cApi.value.Geocoder());

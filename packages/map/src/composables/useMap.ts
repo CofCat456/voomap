@@ -1,8 +1,15 @@
-import type { Ref } from 'vue';
 import { computed, inject, onBeforeUnmount, ref, unref, watch } from 'vue';
+import type { Ref } from 'vue';
 import { apiSymbol, mapSymbol, markerClustererSymbol } from '../utlis/symbol';
 import { hasChanged } from '../utlis';
-import type { GoogleComponentsKey, GoogleMapComponentEvents, GoogleMapComponentOptions, GoogleMapComponentType, Marker, MarkerOptions } from '@/types';
+import type {
+  GoogleComponentsKey,
+  GoogleMapComponentEvents,
+  GoogleMapComponentOptions,
+  GoogleMapComponentType,
+  Marker,
+  MarkerOptions,
+} from '@/types';
 
 export function useMap<T extends GoogleComponentsKey>(
   key: T,
