@@ -41,10 +41,10 @@
     "vue": "^3.3.0"
   },
   "dependencies": {
-    "@googlemaps/markerclusterer": "^2.4.0",
+    "@googlemaps/markerclusterer": "^2.5.3",
     "@voomap/core": "workspace:*"
   },
   "devDependencies": {
-    "@types/google.maps": "^3.53.6"
+    "@types/google.maps": "^3.55.5"
   }
 }

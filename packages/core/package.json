@@ -38,6 +38,6 @@
     "build": "vite build --config ../../scripts/build-core.ts"
   },
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.16.2"
+    "@googlemaps/js-api-loader": "^1.16.6"
   }
 }
