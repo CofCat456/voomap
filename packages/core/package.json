@@ -1,6 +1,6 @@
 {
   "name": "@voomap/core",
-  "version": "0.0.1-beta.25",
+  "version": "0.0.1-beta.26",
   "description": "Google Maps with Composition API",
   "author": "CofCat <a25690756@gmail.com>",
   "license": "ISC",
