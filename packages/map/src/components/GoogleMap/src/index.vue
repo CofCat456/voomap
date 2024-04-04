@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, markRaw, onBeforeUnmount, onMounted, provide, reactive, ref, toRef, unref, watch } from 'vue';
-import { useMap } from '@voomap/core';
-import { apiSymbol, mapSymbol } from '@/utlis/symbol';
-import { taiwanRestriction } from '@/utlis/mapUtlis';
-import { hasChanged, transformCenter } from '@/utlis';
-import { mapEvents } from '@/utlis/events';
+import { computed, markRaw, onBeforeUnmount, onMounted, provide, reactive, ref, toRef, unref, watch } from 'vue'
+import { useMap } from '@voomap/core'
+import { apiSymbol, mapSymbol } from '@/utlis/symbol'
+import { taiwanRestriction } from '@/utlis/mapUtlis'
+import { hasChanged, transformCenter } from '@/utlis'
+import { mapEvents } from '@/utlis/events'
 import type {
   FullscreenControlOptions,
   IconMouseEvent,
@@ -21,7 +21,7 @@ import type {
   StreetViewControlOptions,
   StreetViewPanorama,
   ZoomControlOptions,
-} from '@/types';
+} from '@/types'
 
 interface CofMap {
   cGoogle: typeof google | undefined
@@ -91,7 +91,7 @@ const props = withDefaults(defineProps<Props>(), {
   zoom: 11,
   zoomControl: true,
   language: 'en',
-});
+})
 
 const emit = defineEmits<{
   (e: 'bounds_changed'): void
@@ -116,17 +116,17 @@ const emit = defineEmits<{
   (e: 'tilt_changed'): void
   (e: 'zoom_changed'): void
   (e: 'rightclick'): void
-}>();
+}>()
 
-const mapRef = ref<HTMLElement>();
+const mapRef = ref<HTMLElement>()
 const cofMap: CofMap = reactive({
   cGoogle: undefined,
   cApi: undefined,
   cMap: undefined,
-});
+})
 
-provide(apiSymbol, toRef(() => cofMap.cApi));
-provide(mapSymbol, toRef(() => cofMap.cMap));
+provide(apiSymbol, toRef(() => cofMap.cApi))
+provide(mapSymbol, toRef(() => cofMap.cMap))
 
 const getMapOption = computed<MapOptions>(() => {
   const {
@@ -142,11 +142,11 @@ const getMapOption = computed<MapOptions>(() => {
     rotateControl,
     fullscreenControl,
     ...mapOptions
-  } = unref(props);
+  } = unref(props)
 
   const mapRestriction = inTaiwan
     ? taiwanRestriction
-    : restriction;
+    : restriction
 
   return {
     ...unref(mapOptions),
@@ -158,52 +158,53 @@ const getMapOption = computed<MapOptions>(() => {
     streetViewControl: disableDefaultUI ? false : streetViewControl,
     rotateControl: disableDefaultUI ? false : rotateControl,
     fullscreenControl: disableDefaultUI ? false : fullscreenControl,
-  };
-});
+  }
+})
 
 async function initMap() {
-  const { loader } = useMap(props.apiKey, props.language);
-  cofMap.cGoogle = markRaw(await loader.load());
-  cofMap.cApi = markRaw(cofMap.cGoogle.maps);
+  const { loader } = useMap(props.apiKey, props.language)
+  cofMap.cGoogle = markRaw(await loader.load())
+  cofMap.cApi = markRaw(cofMap.cGoogle.maps)
 
   if (mapRef.value)
-    cofMap.cMap = markRaw(new cofMap.cApi.Map(mapRef.value, getMapOption.value));
+    cofMap.cMap = markRaw(new cofMap.cApi.Map(mapRef.value, getMapOption.value))
 
   mapEvents.forEach((event: any) => {
-    cofMap.cMap?.addListener(event, (e: any) => emit(event, e));
-  });
+    cofMap.cMap?.addListener(event, (e: any) => emit(event, e))
+  })
 
   watch(
     [() => unref(props.center), () => props.zoom],
     ([center, zoom], [_oldCenter, oldZoom]) => {
-      const oldCenter = transformCenter(cofMap.cMap?.getCenter());
+      const oldCenter = transformCenter(cofMap.cMap?.getCenter())
 
       if (zoom && zoom !== oldZoom)
-        cofMap.cMap?.setZoom(zoom);
+        cofMap.cMap?.setZoom(zoom)
 
       if (center && hasChanged(center, oldCenter))
-        cofMap.cMap?.panTo(center);
+        cofMap.cMap?.panTo(center)
 
       // FIXME: setOptions
       // cofMap.cMap?.setOptions(getMapOption.value);
     },
     {
       deep: true,
-    });
+    },
+  )
 }
 
 onMounted(() => {
-  initMap();
-});
+  initMap()
+})
 
 onBeforeUnmount(() => {
   if (cofMap.cMap)
-    cofMap.cApi?.event.clearInstanceListeners(cofMap.cMap);
-});
+    cofMap.cApi?.event.clearInstanceListeners(cofMap.cMap)
+})
 
 defineExpose({
   map: toRef(cofMap, 'cMap'),
-});
+})
 </script>
 
 <template>

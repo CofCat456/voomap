@@ -1,2 +1,2 @@
-export * from './google';
-export * from './option';
+export * from './google'
+export * from './option'

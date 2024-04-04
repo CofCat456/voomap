@@ -1,3 +1,3 @@
-import Marker from './src/index.vue';
+import Marker from './src/index.vue'
 
-export default Marker;
+export default Marker

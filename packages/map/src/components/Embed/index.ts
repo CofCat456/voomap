@@ -1,3 +1,3 @@
-import Embed from './src/index.vue';
+import Embed from './src/index.vue'
 
-export default Embed;
+export default Embed

@@ -21,7 +21,7 @@ export const mapEvents = [
   'tilt_changed',
   'zoom_changed',
   'rightclick',
-];
+]
 
 export const markerEvents = [
   'animation_changed',
@@ -46,9 +46,9 @@ export const markerEvents = [
   'visible_changed',
   'zindex_changed',
   'rightclick',
-] as const;
+] as const
 
-export type MarkerEvent = typeof markerEvents;
+export type MarkerEvent = typeof markerEvents
 
 export const infoWindowEvents = [
   'closeclick',
@@ -57,4 +57,4 @@ export const infoWindowEvents = [
   'position_changed',
   'visible',
   'zindex_changed',
-];
+]

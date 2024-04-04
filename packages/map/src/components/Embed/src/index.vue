@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref } from 'vue'
 
 interface Props {
   mapMode: 'place' | 'view' | 'directions' | 'streetview' | 'search'
@@ -21,27 +21,27 @@ const props = withDefaults(defineProps<Props>(), {
   style: 'border:0',
   allowfullscreen: true,
   address: 'Eiffel+Tower,Paris+France',
-});
+})
 
-const baseUrl = ref('https://www.google.com/maps/embed/v1');
+const baseUrl = ref('https://www.google.com/maps/embed/v1')
 
 const getUrl = computed(() => {
-  let url = `${baseUrl.value}/${props.mapMode}?key=${props.apiKey}`;
+  let url = `${baseUrl.value}/${props.mapMode}?key=${props.apiKey}`
 
   if (props.address)
-    url += `&q=${props.address}`;
+    url += `&q=${props.address}`
 
   if (props.center)
-    url += `&center=${props.center}`;
+    url += `&center=${props.center}`
 
   if (props.zoom)
-    url += `&zoom=${props.zoom}`;
+    url += `&zoom=${props.zoom}`
 
   if (props.mapType)
-    url += `&mapType=${props.mapType}`;
+    url += `&mapType=${props.mapType}`
 
-  return url;
-});
+  return url
+})
 </script>
 
 <template>

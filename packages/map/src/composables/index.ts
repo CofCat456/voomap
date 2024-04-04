@@ -1,1 +1,1 @@
-export * from './useMap';
+export * from './useMap'

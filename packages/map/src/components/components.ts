@@ -1,8 +1,8 @@
-import GoogleMap from './GoogleMap';
-import MarkerClusterer from './MarkerClusterer';
-import Marker from './Marker';
-import InfoWindow from './InfoWindow';
-import Embed from '@/components/Embed';
+import GoogleMap from './GoogleMap'
+import MarkerClusterer from './MarkerClusterer'
+import Marker from './Marker'
+import InfoWindow from './InfoWindow'
+import Embed from '@/components/Embed'
 
 export {
   GoogleMap,
@@ -10,4 +10,4 @@ export {
   Marker,
   InfoWindow,
   Embed,
-};
+}

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { inject, markRaw, onBeforeMount, onMounted, ref, unref, useSlots, watch } from 'vue';
-import { apiSymbol, mapSymbol, markerSymbol } from '@/utlis/symbol';
-import type { InfoWindow, InfoWindowOpenOptions, InfoWindowOptions } from '@/types';
-import { type MarkerEvent, infoWindowEvents } from '@/utlis/events';
+import { inject, markRaw, onBeforeMount, onMounted, ref, unref, useSlots, watch } from 'vue'
+import { apiSymbol, mapSymbol, markerSymbol } from '@/utlis/symbol'
+import type { InfoWindow, InfoWindowOpenOptions, InfoWindowOptions } from '@/types'
+import { type MarkerEvent, infoWindowEvents } from '@/utlis/events'
 
 interface Props extends InfoWindowOptions {
   initialState?: boolean
@@ -12,7 +12,7 @@ interface Props extends InfoWindowOptions {
 
 const props = withDefaults(defineProps<Props>(), {
   openEvent: 'click',
-});
+})
 
 const emit = defineEmits<{
   (e: 'closeclick'): void
@@ -21,23 +21,23 @@ const emit = defineEmits<{
   (e: 'position_changed'): void
   (e: 'visible'): void
   (e: 'zindex_changed'): void
-}>();
+}>()
 
-const infoWindow = ref<InfoWindow>();
-const infoWindowRef = ref<HTMLElement>();
+const infoWindow = ref<InfoWindow>()
+const infoWindowRef = ref<HTMLElement>()
 
-const map = inject(mapSymbol, ref());
-const api = inject(apiSymbol, ref());
-const marker = inject(markerSymbol, ref());
+const map = inject(mapSymbol, ref())
+const api = inject(apiSymbol, ref())
+const marker = inject(markerSymbol, ref())
 
-const hasSlotDefault = !!useSlots().default;
+const hasSlotDefault = !!useSlots().default
 
 function open(opts?: InfoWindowOpenOptions) {
-  return infoWindow.value?.open({ map: map.value, anchor: marker.value, ...opts });
+  return infoWindow.value?.open({ map: map.value, anchor: marker.value, ...opts })
 }
 
 function close() {
-  infoWindow.value?.close();
+  infoWindow.value?.close()
 }
 
 onMounted(() => {
@@ -47,7 +47,7 @@ onMounted(() => {
         infoWindow.value.setOptions({
           ...unref(props),
           content: hasSlotDefault ? infoWindowRef.value : props.content ? props.content : marker.value ? marker.value.getTitle() : '',
-        });
+        })
       }
       else {
         infoWindow.value = markRaw(
@@ -55,42 +55,41 @@ onMounted(() => {
             ...unref(props),
             content: hasSlotDefault ? infoWindowRef.value : props.content ? props.content : marker.value ? marker.value.getTitle() : '',
           }),
-        );
+        )
 
         if (marker.value) {
           if (props.openEvent)
-            marker.value.addListener(props.openEvent, open);
+            marker.value.addListener(props.openEvent, open)
 
           if (props.closeEvent)
-            marker.value.addListener(props.closeEvent, close);
+            marker.value.addListener(props.closeEvent, close)
         }
 
         if (!marker.value || props.initialState)
-          open();
+          open()
 
         infoWindowEvents.forEach((event: any) => {
-          infoWindow.value?.addListener(event, () => emit(event));
-        });
+          infoWindow.value?.addListener(event, () => emit(event))
+        })
       }
     }
-  },
-  {
+  }, {
     immediate: true,
-  });
-});
+  })
+})
 
 onBeforeMount(() => {
   if (infoWindow.value) {
-    api.value?.event.clearInstanceListeners(infoWindow.value);
-    close();
+    api.value?.event.clearInstanceListeners(infoWindow.value)
+    close()
   }
-});
+})
 
 defineExpose({
   infoWindow,
   open,
   close,
-});
+})
 </script>
 
 <template>

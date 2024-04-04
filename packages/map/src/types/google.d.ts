@@ -1,35 +1,34 @@
-import { MarkerEvent } from "@/utlis/events";
-import { MarkerOptions } from ".";
+import type { MarkerOptions } from '.'
+import type { MarkerEvent } from '@/utlis/events'
 
 // Map
-export type Map = google.maps.Map;
-export type Marker = google.maps.Marker;
-export type InfoWindow = google.maps.InfoWindow; 
-export type MapRestriction = google.maps.MapRestriction;
-export type StreetViewPanorama = google.maps.StreetViewPanorama;
-export type MapTypeStyle = google.maps.MapTypeStyle;
+export type Map = google.maps.Map
+export type Marker = google.maps.Marker
+export type InfoWindow = google.maps.InfoWindow
+export type MapRestriction = google.maps.MapRestriction
+export type StreetViewPanorama = google.maps.StreetViewPanorama
+export type MapTypeStyle = google.maps.MapTypeStyle
 
 // Marker
-export type Point = google.maps.Point;
-export type Animation = google.maps.Animation;
-export type Icon = google.maps.Icon;
-export type Symbol = google.maps.Symbol;
-export type MarkerLabel = google.maps.MarkerLabel;
-export type MarkerShape = google.maps.MarkerShape;
+export type Point = google.maps.Point
+export type Animation = google.maps.Animation
+export type Icon = google.maps.Icon
+export type Symbol = google.maps.Symbol
+export type MarkerLabel = google.maps.MarkerLabel
+export type MarkerShape = google.maps.MarkerShape
 
 // InfoWindow
-export type Size = google.maps.Size;
+export type Size = google.maps.Size
 
-// other 
-export type LatLng = google.maps.LatLng;
-export type LatLngLiteral = google.maps.LatLngLiteral;
+// other
+export type LatLng = google.maps.LatLng
+export type LatLngLiteral = google.maps.LatLngLiteral
 
 // Events
-export type MapMouseEvent = google.maps.MapMouseEvent;
-export type IconMouseEvent = google.maps.IconMouseEvent;
+export type MapMouseEvent = google.maps.MapMouseEvent
+export type IconMouseEvent = google.maps.IconMouseEvent
 
-
-export type GoogleComponentsKey = 'Marker' | 'Polyline' | 'Polygon' | 'Rectangle' | 'Circle';
+export type GoogleComponentsKey = 'Marker' | 'Polyline' | 'Polygon' | 'Rectangle' | 'Circle'
 
 export type GoogleMapComponentType<T> = T extends 'Marker'
   ? Marker
@@ -41,7 +40,7 @@ export type GoogleMapComponentType<T> = T extends 'Marker'
         ? google.maps.Rectangle
         : T extends 'Circle'
           ? google.maps.Circle
-          : unknown;
+          : unknown
 
 export type GoogleMapComponentEvents<T> = T extends 'Marker'
   ? MarkerEvent
@@ -53,7 +52,7 @@ export type GoogleMapComponentEvents<T> = T extends 'Marker'
         ? MarkerEvent
         : T extends 'Circle'
           ? MarkerEvent
-          : unknown;
+          : unknown
 
 export type GoogleMapComponentOptions<T> = T extends 'Marker'
   ? MarkerOptions
@@ -65,4 +64,4 @@ export type GoogleMapComponentOptions<T> = T extends 'Marker'
         ? google.maps.RectangleOptions
         : T extends 'Circle'
           ? google.maps.CircleOptions
-          : unknown;
+          : unknown
